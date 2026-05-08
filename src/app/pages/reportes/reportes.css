@@ -1,0 +1,98 @@
+.contenedor-reportes {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-reportes h1 {
+  font-size: 28px;
+  color: #1a202c;
+  margin-bottom: 32px;
+}
+
+/* Panel de KPIs */
+.panel-kpi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.card-kpi {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #cbd5e0;
+  transition: transform 0.2s;
+}
+
+.card-kpi:hover {
+  transform: translateY(-4px);
+}
+
+.card-kpi .label {
+  color: #718096;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.card-kpi .valor {
+  font-size: 36px;
+  font-weight: 800;
+  color: #2d3748;
+}
+
+/* Colores por tipo de KPI */
+.card-kpi.total { border-left-color: #4299e1; }
+.card-kpi.pendientes { border-left-color: #ed8936; }
+.card-kpi.finalizados { border-left-color: #48bb78; }
+
+/* Tabla de Detalle */
+.seccion-detalle {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.seccion-detalle h3 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: #2d3748;
+}
+
+.tabla-reportes {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-reportes th {
+  text-align: left;
+  padding: 12px;
+  background-color: #f7fafc;
+  color: #4a5568;
+  font-size: 13px;
+  border-bottom: 2px solid #edf2f7;
+}
+
+.tabla-reportes td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #edf2f7;
+  color: #2d3748;
+}
+
+/* Indicadores de prioridad */
+.indicador {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.indicador.alta { background-color: #f56565; }
+.indicador.media { background-color: #ecc94b; }
+.indicador.baja { background-color: #48bb78; }

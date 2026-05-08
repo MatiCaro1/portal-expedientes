@@ -1,0 +1,105 @@
+<div class="contenedor">
+  <!-- Cabecera principal del portal -->
+  <header class="header">
+    <h1>Portal de Expedientes Electrónicos</h1>
+  </header>
+
+  <!-- Sección: Formulario para crear nuevos registros -->
+  <section class="seccion-formulario">
+    <h2>Nuevo Expediente</h2>
+    <div class="formulario">
+
+      <!-- Campo: Número de expediente (Texto) -->
+      <div class="campo">
+        <label>Número</label>
+        <input type="text"
+          placeholder="Ej: EXP-123"
+          [(ngModel)]="nuevoExpediente.numero"> <!-- Sincronización bidireccional -->
+      </div>
+
+      <!-- Campo: Estado del expediente (Selección) -->
+      <div class="campo">
+        <label>Estado</label>
+        <select [(ngModel)]="nuevoExpediente.estado">
+          <option value="">Seleccionar estado</option>
+          <option value="En Proceso">En Proceso</option>
+          <option value="Finalizado">Finalizado</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+      </div>
+
+       <div class="campo">
+        <label>Prioridad</label>
+        <select [(ngModel)]="nuevoExpediente.prioridad">
+          <option value="">Seleccionar prioridad</option>
+          <option value="Alta">Alta</option>
+          <option value="Media">Media</option>
+          <option value="Baja">Baja</option>
+        </select>
+      </div>
+
+
+      <!-- Campo: Fecha de creación (Calendario) -->
+      <div class="campo">
+        <label>Fecha</label>
+        <input type="date"
+          [(ngModel)]="nuevoExpediente.fechaCreacion">
+      </div>
+
+      <!-- Botón para ejecutar la lógica de agregado -->
+      <div class="acciones-form">
+        <button class="btn-primario" (click)="agregarExpediente()">Agregar Expediente</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Tabla de resultados -->
+  <section class="seccion-tabla">
+    <div class="tabla-contenedor">
+      <table>
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Estado</th>
+            <th>Prioridad</th>
+            <th>Fecha de Creación</th>
+            <th class="texto-centro">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Directiva @for: Itera sobre la lista de expedientes -->
+          @for (expediente of expedientes; track expediente.id) {
+            <tr>
+              <td class="col-numero">{{ expediente.numero }}</td>
+              <td>
+                <!-- Badge dinámico: cambia de color según el estado -->
+                <span class="badge" [class]="expediente.estado.toLowerCase().replace(' ', '-')">
+                  {{ expediente.estado }}
+                </span>
+              </td>
+              <td>
+                <!-- Badge dinámico para la prioridad -->
+                <span class="badge" [class]="'prioridad-' + expediente.prioridad.toLowerCase()">
+                  {{ expediente.prioridad }}
+                </span>
+              </td>
+              <td>{{ expediente.fechaCreacion }}</td>
+              <td class="texto-centro">
+                <!-- Botón de eliminar con evento de clic -->
+                <button class="btn-icon" (click)="eliminarExpediente(expediente.id)" title="Eliminar">
+                  <span class="icon-trash">🗑️</span>
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <!-- Se muestra si la lista de expedientes está vacía -->
+            <tr>
+              <td colspan="4" class="texto-centro">No hay expedientes registrados.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
