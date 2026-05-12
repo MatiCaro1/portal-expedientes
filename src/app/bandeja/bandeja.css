@@ -111,21 +111,37 @@ input:focus, select:focus {
   transform: scale(0.98);
 }
 
-.btn-icon {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  border-radius: 6px;
-  transition: background-color 0.2s;
+.acciones-tabla {
   display: flex;
-  align-items: center;
+  gap: 8px;
   justify-content: center;
 }
 
+.btn-icon {
+  background: #f1f5f9;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.4rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+}
+
 .btn-icon:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.btn-icon.btn-eliminar:hover {
   background-color: #fee2e2;
+}
+
+.btn-icon.btn-ver:hover {
+  background-color: #dbeafe;
 }
 
 /* Table Styles */

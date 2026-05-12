@@ -1,0 +1,108 @@
+.detalle {
+  max-width: 700px;
+  margin: 40px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0 20px;
+}
+
+.cabecera-detalle {
+  margin-bottom: 25px;
+}
+
+.btn-volver {
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.btn-volver:hover {
+  text-decoration: underline;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border: 1px solid #e5e7eb;
+}
+
+.info-grupo {
+  margin-bottom: 20px;
+}
+
+.info-grupo label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+
+.valor-destacado {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 0;
+}
+
+.info-fila {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  padding: 20px 0;
+}
+
+/* Badges logic copied from bandeja for consistency */
+.badge {
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Status colors */
+.badge.en-proceso { background-color: #fef3c7; color: #92400e; }
+.badge.finalizado { background-color: #dcfce7; color: #166534; }
+.badge.pendiente { background-color: #f1f5f9; color: #475569; }
+.badge.cancelado { background-color: #fee2e2; color: #991b1b; }
+
+/* Priority colors */
+.badge.prioridad-alta { background-color: #fee2e2; color: #991b1b; }
+.badge.prioridad-media { background-color: #fef3c7; color: #92400e; }
+.badge.prioridad-baja { background-color: #dcfce7; color: #166534; }
+
+.mensaje-error-contenedor {
+  text-align: center;
+  padding: 50px;
+  background-color: #fff1f2;
+  border-radius: 12px;
+  border: 1px solid #fecaca;
+}
+
+.mensaje-error {
+  color: #b91c1c;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.btn-primario {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}

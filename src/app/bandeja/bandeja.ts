@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Expediente } from '../../models/expediente';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-bandeja',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './bandeja.html',
   styleUrl: './bandeja.css',
 })
@@ -73,6 +74,22 @@ export class Bandeja implements OnInit {
       // Actualizamos el almacenamiento persistente
       this.guardarLocalStorage();
     }
+  }
+
+  /**
+   * Cambia el estado del expediente al siguiente en la secuencia:
+   * Pendiente -> En Proceso -> Finalizado -> (vuelve a Pendiente)
+   */
+  actualizarEstado(expediente: Expediente) {
+    const estados = ['Pendiente', 'En Proceso', 'Finalizado'];
+    const indiceActual = estados.indexOf(expediente.estado);
+
+    // Calculamos el siguiente índice (si es el último, vuelve al primero)
+    const siguienteIndice = (indiceActual + 1) % estados.length;
+    expediente.estado = estados[siguienteIndice];
+
+    // Guardamos los cambios
+    this.guardarLocalStorage();
   }
 
   /**

@@ -1,0 +1,42 @@
+<div class="detalle">
+  <div class="cabecera-detalle">
+    <button class="btn-volver" routerLink="/bandeja">← Volver a la bandeja</button>
+    <h1>Detalle de expediente</h1>
+  </div>
+
+  @if (expediente) {
+    <div class="card">
+      <div class="info-grupo">
+        <label>Número de Expediente</label>
+        <p class="valor-destacado">{{ expediente.numero }}</p>
+      </div>
+
+      <div class="info-fila">
+        <div class="info-grupo">
+          <label>Estado</label>
+          <span class="badge" [class]="expediente.estado.toLowerCase().replace(' ', '-')">
+            {{ expediente.estado }}
+          </span>
+        </div>
+
+        <div class="info-grupo">
+          <label>Prioridad</label>
+          <span class="badge" [class]="obtenerClasePrioridad(expediente.prioridad)">
+            {{ expediente.prioridad }}
+          </span>
+        </div>
+      </div>
+
+      <div class="info-grupo">
+        <label>Fecha de creación</label>
+        <p>{{ expediente.fechaCreacion }}</p>
+      </div>
+    </div>
+  } @else {
+    <div class="mensaje-error-contenedor">
+      <p class="mensaje-error">⚠️ No se encontró el expediente solicitado.</p>
+      <button class="btn-primario" routerLink="/bandeja">Regresar a la lista</button>
+    </div>
+  }
+
+</div>

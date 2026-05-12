@@ -1,98 +1,68 @@
-.contenedor-reportes {
-  padding: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Espaciado general del componente */
+.reportes-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.header-reportes h1 {
-  font-size: 28px;
-  color: #1a202c;
-  margin-bottom: 32px;
+/*
+   Configuración de la cuadrícula de tarjetas
+   Usamos 'flex' para que las tarjetas se acomoden solas según el tamaño de la pantalla
+*/
+.dashboard-cards {
+  display: flex;
+  flex-wrap: wrap; /* Si no caben, saltan a la siguiente línea */
+  gap: 20px;       /* Espacio entre cada tarjeta */
+  margin-top: 20px;
 }
 
-/* Panel de KPIs */
-.panel-kpi {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin-bottom: 48px;
+/* Diseño base de una tarjeta (todas comparten esto) */
+.card {
+  flex: 1;           /* Todas intentan tener el mismo ancho */
+  min-width: 200px;  /* Pero ninguna puede ser más pequeña que 200px */
+  padding: 20px;
+  border-radius: 10px;
+  color: white;      /* Texto en blanco para resaltar sobre el fondo de color */
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombrita para dar profundidad */
+  transition: transform 0.2s; /* Animación suave para cuando pasas el mouse */
 }
 
-.card-kpi {
-  background: white;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border-left: 6px solid #cbd5e0;
-  transition: transform 0.2s;
+/* Efecto visual al pasar el mouse por encima de una tarjeta */
+.card:hover {
+  transform: translateY(-5px); /* Se levanta un poco */
 }
 
-.card-kpi:hover {
-  transform: translateY(-4px);
+/* Estilo para los títulos (Pendiente, Proceso, etc) */
+.card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
 }
 
-.card-kpi .label {
-  color: #718096;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+/* Estilo para el número grande del total */
+.count {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 10px 0 0 0;
 }
 
-.card-kpi .valor {
-  font-size: 36px;
-  font-weight: 800;
-  color: #2d3748;
+/*
+   ASIGNACIÓN DE COLORES INTUITIVOS
+   Usamos clases específicas para cambiar solo el color de fondo de cada una
+*/
+
+.card-pendiente {
+  background-color: #f39c12; /* Naranja = Espera / Alerta */
 }
 
-/* Colores por tipo de KPI */
-.card-kpi.total { border-left-color: #4299e1; }
-.card-kpi.pendientes { border-left-color: #ed8936; }
-.card-kpi.finalizados { border-left-color: #48bb78; }
-
-/* Tabla de Detalle */
-.seccion-detalle {
-  background: white;
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+.card-proceso {
+  background-color: #3498db; /* Azul = Actividad / Ejecución */
 }
 
-.seccion-detalle h3 {
-  margin-top: 0;
-  margin-bottom: 24px;
-  color: #2d3748;
+.card-finalizado {
+  background-color: #2ecc71; /* Verde = Éxito / Terminado */
 }
 
-.tabla-reportes {
-  width: 100%;
-  border-collapse: collapse;
+.card-total {
+  background-color: #34495e; /* Gris oscuro = Informativo / Neutral */
 }
-
-.tabla-reportes th {
-  text-align: left;
-  padding: 12px;
-  background-color: #f7fafc;
-  color: #4a5568;
-  font-size: 13px;
-  border-bottom: 2px solid #edf2f7;
-}
-
-.tabla-reportes td {
-  padding: 16px 12px;
-  border-bottom: 1px solid #edf2f7;
-  color: #2d3748;
-}
-
-/* Indicadores de prioridad */
-.indicador {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 8px;
-}
-
-.indicador.alta { background-color: #f56565; }
-.indicador.media { background-color: #ecc94b; }
-.indicador.baja { background-color: #48bb78; }

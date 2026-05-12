@@ -1,10 +1,38 @@
-<table>
-  <thead>
-    <tr>
-      <th>Total de expedientes</th>
-      <th>Expedientes pendientes</th>
-      <th>Expedientes finalizados</th>
-      <th>Expedientes cancelados
-    </tr>
-  </thead>
-</table>
+<!-- Contenedor principal para dar margen y estructura -->
+<div class="reportes-container">
+  <h1>Resumen de Expedientes</h1>
+  <p>Aquí puedes ver el totalizador de tus gestiones por estado.</p>
+
+  <!-- Esta sección agrupa todas las tarjetas (cards) -->
+  <div class="dashboard-cards">
+    
+    <!-- PASO 3: Mostrar los datos usando la "Interpolación" {{ }} -->
+    <!-- La interpolación permite mostrar variables de nuestro archivo .ts en el HTML -->
+
+    <!-- Tarjeta de Pendientes (Color Naranja) -->
+    <div class="card card-pendiente">
+      <h3>Pendientes</h3>
+      <!-- Llamamos al getter 'totalPendientes' que definimos en el TS -->
+      <p class="count">{{ totalPendientes }}</p>
+    </div>
+
+    <!-- Tarjeta de En Proceso (Color Azul) -->
+    <div class="card card-proceso">
+      <h3>En Proceso</h3>
+      <p class="count">{{ totalEnProceso }}</p>
+    </div>
+
+    <!-- Tarjeta de Finalizados (Color Verde) -->
+    <div class="card card-finalizado">
+      <h3>Finalizados</h3>
+      <p class="count">{{ totalFinalizados }}</p>
+    </div>
+
+    <!-- Tarjeta de Total General (Color Gris Oscuro) -->
+    <div class="card card-total">
+      <h3>Total General</h3>
+      <p class="count">{{ totalGeneral }}</p>
+    </div>
+
+  </div>
+</div>

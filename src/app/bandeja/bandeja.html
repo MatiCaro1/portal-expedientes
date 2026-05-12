@@ -86,10 +86,22 @@
               </td>
               <td>{{ expediente.fechaCreacion }}</td>
               <td class="texto-centro">
-                <!-- Botón de eliminar con evento de clic -->
-                <button class="btn-icon" (click)="eliminarExpediente(expediente.id)" title="Eliminar">
-                  <span class="icon-trash">🗑️</span>
-                </button>
+                <div class="acciones-tabla">
+                  <!-- Botón para cambiar estado dinámicamente -->
+                  <button class="btn-icon" (click)="actualizarEstado(expediente)" title="Cambiar estado">
+                    <span class="icon-refresh">🔄</span>
+                  </button>
+
+                  <!-- Botón de ver detalle -->
+                  <button class="btn-icon btn-ver" [routerLink]="['/detalle-expediente', expediente.id]" title="Ver detalle">
+                    <span class="icon-eye">👀</span>
+                  </button>
+
+                  <!-- Botón de eliminar -->
+                  <button class="btn-icon btn-eliminar" (click)="eliminarExpediente(expediente.id)" title="Eliminar">
+                    <span class="icon-trash">🗑️</span>
+                  </button>
+                </div>
               </td>
             </tr>
           } @empty {
