@@ -67,3 +67,13 @@ Además:
 La tabla debe actualizarse automáticamente.
 El color visual del estado debe cambiar correctamente.
 Los cambios deben mantenerse usando localStorage.
+
+
+
+# Actividad - 12-05-2026 para jueves 14-05-2026
+
+Ejercicio:
+ 
+Desarrolle una funcionalidad que permita editar expedientes dentro del Portal de Expedientes Electrónicos. Para ello, agregue un botón “Editar” en la Bandeja de Trabajo y cree una nueva vista accesible mediante una ruta dinámica (/expedientes/editar/:id). La vista debe cargar la información del expediente seleccionado y permitir modificar nombre, estado, prioridad y fecha de creación.
+ 
+Los cambios realizados deben actualizar la información almacenada en localStorage. Además, mejore visualmente la tabla resaltando los expedientes con prioridad alta. Como desafío adicional, incorpore validación visual para evitar guardar formularios con campos vacíos.
