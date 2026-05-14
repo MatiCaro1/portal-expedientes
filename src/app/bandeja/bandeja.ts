@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Expediente } from '../../models/expediente';
 import { RouterLink } from '@angular/router';
+import { ExpedienteService } from '../service/expediente';
 
 @Component({
   selector: 'app-bandeja',
@@ -20,24 +21,23 @@ export class Bandeja implements OnInit {
     estado: '',
     fechaCreacion: '',
     prioridad: '',
+    observaciones: '',
   };
+
+  constructor(private expedienteService: ExpedienteService) {}
+
+
 
   /**
    * Se ejecuta al iniciar el componente.
    * Intenta cargar los datos desde LocalStorage o usa datos de prueba si está vacío.
    */
   ngOnInit() {
-    const data = localStorage.getItem('expedientes');
-    if (data) {
-      this.expedientes = JSON.parse(data);
-    } else {
-      // Datos iniciales de ejemplo si no hay nada guardado
-      this.expedientes = [
-        { id: 1, numero: 'EXP-001', estado: 'En Proceso', fechaCreacion: '2024-01-01', prioridad: 'Alta' },
-        { id: 2, numero: 'EXP-002', estado: 'Finalizado', fechaCreacion: '2024-02-01',prioridad: 'Media' },
-        { id: 3, numero: 'EXP-003', estado: 'Pendiente', fechaCreacion: '2024-03-01', prioridad: 'Baja'}
-      ];
-    }
+   this.cargarExpedientes();
+  }
+
+  cargarExpedientes() {
+    this.expedientes = this.expedienteService.obtenerExpedientes();
   }
 
   /**
@@ -45,7 +45,7 @@ export class Bandeja implements OnInit {
    */
   agregarExpediente() {
     // Validación básica: todos los campos son obligatorios
-    if (!this.nuevoExpediente.numero || !this.nuevoExpediente.estado || !this.nuevoExpediente.fechaCreacion) {
+    if (!this.nuevoExpediente.numero || !this.nuevoExpediente.estado || !this.nuevoExpediente.fechaCreacion || !this.nuevoExpediente.prioridad) {
       alert('Por favor, complete todos los campos.');
       return;
     }
@@ -57,11 +57,12 @@ export class Bandeja implements OnInit {
       estado: this.nuevoExpediente.estado,
       fechaCreacion: this.nuevoExpediente.fechaCreacion,
       prioridad: this.nuevoExpediente.prioridad,
+      observaciones: this.nuevoExpediente.observaciones,
     };
 
-    // Añadimos a la lista, guardamos en memoria local y limpiamos los inputs
-    this.expedientes.push(expediente);
-    this.guardarLocalStorage();
+    // Añadimos mediante el servicio y refrescamos la lista
+    this.expedienteService.agregarExpediente(expediente);
+    this.cargarExpedientes();
     this.limpiarFormulario();
   }
 
@@ -69,10 +70,8 @@ export class Bandeja implements OnInit {
   eliminarExpediente(id: number) {
     // Solicitamos confirmación del usuario
     if (confirm('¿Está seguro de que desea eliminar este expediente?')) {
-      // Filtramos el array para excluir el elemento con el ID proporcionado
-      this.expedientes = this.expedientes.filter(e => e.id !== id);
-      // Actualizamos el almacenamiento persistente
-      this.guardarLocalStorage();
+      this.expedienteService.eliminarExpediente(id);
+      this.cargarExpedientes();
     }
   }
 
@@ -88,8 +87,9 @@ export class Bandeja implements OnInit {
     const siguienteIndice = (indiceActual + 1) % estados.length;
     expediente.estado = estados[siguienteIndice];
 
-    // Guardamos los cambios
-    this.guardarLocalStorage();
+    // Guardamos los cambios mediante el servicio
+    this.expedienteService.actualizarExpediente(expediente);
+    this.cargarExpedientes();
   }
 
   /**
@@ -102,13 +102,7 @@ export class Bandeja implements OnInit {
       estado: '',
       fechaCreacion: '',
       prioridad: '',
+      observaciones: '',
     };
-  }
-
-  /**
-   * Persiste la lista actual de expedientes en el LocalStorage del navegador.
-   */
-  guardarLocalStorage() {
-    localStorage.setItem('expedientes', JSON.stringify(this.expedientes));
   }
 }

@@ -95,3 +95,10 @@ Implementamos la capacidad de modificar expedientes existentes, mejorando la int
     *   **Persistencia Refinada:** Aseguramos que los cambios se sincronicen correctamente en el array global de `localStorage`.
 
 
+# Actividad - 14-05-2026 para martes 19-05-2026
+
+*   Actividad:
+ 
+Desarrolle una nueva funcionalidad para el Portal de Expedientes que permita gestionar “observaciones” asociadas a cada expediente. Para ello, agregue un campo de observaciones en la creación y edición de expedientes, mostrando posteriormente esta información tanto en la vista de detalle como en la bandeja. La información debe mantenerse utilizando el servicio ExpedienteService, evitando acceder directamente a localStorage desde los componentes.
+ 
+Además, cree una nueva vista llamada “Pendientes” accesible desde el menú lateral, donde se muestren únicamente los expedientes con estado “Pendiente”. La navegación debe implementarse utilizando Angular Router y componentes standalone. Como mejora visual, destaque automáticamente los expedientes de prioridad alta utilizando estilos dinámicos.

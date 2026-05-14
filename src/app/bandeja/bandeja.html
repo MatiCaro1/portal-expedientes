@@ -39,6 +39,11 @@
         </select>
       </div>
 
+      <!-- Campo: Observaciones (Área de texto) -->
+      <div class="campo">
+        <label>Observaciones</label>
+        <textarea [(ngModel)]="nuevoExpediente.observaciones" placeholder="Ingrese observaciones..."></textarea>
+      </div>
 
       <!-- Campo: Fecha de creación (Calendario) -->
       <div class="campo">
@@ -64,6 +69,7 @@
             <th>Estado</th>
             <th>Prioridad</th>
             <th>Fecha de Creación</th>
+            <th>Observaciones</th>
             <th class="texto-centro">Acciones</th>
           </tr>
         </thead>
@@ -85,6 +91,7 @@
                 </span>
               </td>
               <td>{{ expediente.fechaCreacion }}</td>
+              <td>{{ expediente.observaciones }}</td>
               <td class="texto-centro">
                 <div class="acciones-tabla">
                   <!-- Botón para cambiar estado dinámicamente -->
@@ -106,6 +113,8 @@
                   <button class="btn-icon btn-eliminar" (click)="eliminarExpediente(expediente.id)" title="Eliminar">
                     <span class="icon-trash">🗑️</span>
                   </button>
+
+
                 </div>
               </td>
             </tr>

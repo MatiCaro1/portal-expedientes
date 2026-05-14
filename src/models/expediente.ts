@@ -3,5 +3,6 @@ export interface Expediente {
   numero: string;
   estado: string;
   fechaCreacion: string;
-  prioridad: string; // Campo opcional para futuras mejoras
+  prioridad: string;
+  observaciones: string; // Campo opcional para futuras mejoras
 }
