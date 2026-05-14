@@ -70,7 +70,7 @@
         <tbody>
           <!-- Directiva @for: Itera sobre la lista de expedientes -->
           @for (expediente of expedientes; track expediente.id) {
-            <tr>
+            <tr [class.fila-alta]="expediente.prioridad === 'Alta'">
               <td class="col-numero">{{ expediente.numero }}</td>
               <td>
                 <!-- Badge dinámico: cambia de color según el estado -->
@@ -95,6 +95,11 @@
                   <!-- Botón de ver detalle -->
                   <button class="btn-icon btn-ver" [routerLink]="['/detalle-expediente', expediente.id]" title="Ver detalle">
                     <span class="icon-eye">👀</span>
+                  </button>
+
+                  <!-- Botón de editar -->
+                  <button class="btn-icon btn-editar" [routerLink]="['/expedientes/editar', expediente.id]" title="Editar">
+                    <span class="icon-edit">✏️</span>
                   </button>
 
                   <!-- Botón de eliminar -->

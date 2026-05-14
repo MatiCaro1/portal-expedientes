@@ -4,6 +4,7 @@ import { Bandeja } from './bandeja/bandeja';
 import { Acerca } from './pages/acerca/acerca';
 import { Reportes } from './pages/reportes/reportes';
 import { DetalleExpediente } from './pages/detalle-expediente/detalle-expediente';
+import { EditarExpediente } from './pages/editar-expediente/editar-expediente';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'acerca', component: Acerca },
   { path: 'reportes', component: Reportes },
   { path: 'detalle-expediente/:id', component: DetalleExpediente },
+  { path: 'expedientes/editar/:id', component: EditarExpediente },
   { path: '**', redirectTo: 'inicio' }
 ];

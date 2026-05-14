@@ -144,6 +144,10 @@ input:focus, select:focus {
   background-color: #dbeafe;
 }
 
+.btn-icon.btn-editar:hover {
+  background-color: #fef3c7;
+}
+
 /* Table Styles */
 .tabla-contenedor {
   overflow-x: auto;
@@ -177,6 +181,10 @@ tr:last-child td {
 
 tr:hover td {
   background-color: #f8fafc;
+}
+
+tr.fila-alta td {
+  background-color: #fff1f2;
 }
 
 .col-numero {

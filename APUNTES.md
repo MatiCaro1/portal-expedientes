@@ -77,3 +77,21 @@ Ejercicio:
 Desarrolle una funcionalidad que permita editar expedientes dentro del Portal de Expedientes Electrónicos. Para ello, agregue un botón “Editar” en la Bandeja de Trabajo y cree una nueva vista accesible mediante una ruta dinámica (/expedientes/editar/:id). La vista debe cargar la información del expediente seleccionado y permitir modificar nombre, estado, prioridad y fecha de creación.
  
 Los cambios realizados deben actualizar la información almacenada en localStorage. Además, mejore visualmente la tabla resaltando los expedientes con prioridad alta. Como desafío adicional, incorpore validación visual para evitar guardar formularios con campos vacíos.
+
+
+# Desarrollo de la actividad 14-05-2026
+
+## 📝 Hito 5: Edición y Validación de Datos (Formularios Dinámicos)
+Implementamos la capacidad de modificar expedientes existentes, mejorando la interactividad y la robustez del sistema.
+*   **Acciones:**
+    *   **Botón de Edición:** Agregamos un botón "Editar" en la `Bandeja` que redirige a una nueva ruta dinámica.
+    *   **Componente EditarExpediente:** Creamos una nueva vista con un formulario que carga los datos desde `localStorage`.
+    *   **Resaltado Visual:** Aplicamos estilos condicionales en la tabla de la `Bandeja` para resaltar expedientes con **Prioridad Alta** (fondo rosado suave).
+    *   **Validación de Formularios:** Implementamos lógica para evitar guardar campos vacíos, mostrando mensajes de error y resaltando los inputs en rojo.
+*   **Conceptos clave:**
+    *   **Rutas Dinámicas con Parámetros:** Usamos `:id` en la ruta para identificar qué expediente editar.
+    *   **Clonación de Objetos:** Usamos el operador spread `{...encontrado}` para editar una copia del objeto y solo guardar si el usuario confirma.
+    *   **UX (User Experience):** La validación visual ayuda al usuario a entender por qué no puede guardar un cambio, mejorando la usabilidad.
+    *   **Persistencia Refinada:** Aseguramos que los cambios se sincronicen correctamente en el array global de `localStorage`.
+
+
