@@ -133,3 +133,46 @@ input:focus, select:focus {
 .btn-secundario:hover {
   background-color: #e2e8f0;
 }
+
+/* Contenedor principal del campo */
+.form-grupo {
+  display: flex;
+  flex-direction: column; /* Apila la etiqueta arriba y el textarea abajo */
+  gap: 8px;               /* Separación limpia entre el label y el cuadro de texto */
+  margin-bottom: 20px;    /* Espacio respecto a los botones de abajo */
+  width: 100%;            /* Ocupa todo el ancho de la tarjeta */
+  box-sizing: border-box;
+}
+
+/* Estilo de la etiqueta (Label) */
+.form-grupo label {
+  font-size: 14px;
+  color: #6b7280;         /* Gris elegante, típico de tipografías secundarias */
+  font-weight: 500;
+}
+
+/* Estilo del área de texto (Textarea) */
+.form-grupo textarea {
+  width: 100%;
+  padding: 12px;          /* Espacio interno para que el texto no toque los bordes */
+  border: 1px solid #d1d5db; /* Borde gris suave idéntico a tus otros inputs */
+  border-radius: 6px;     /* Esquinas redondeadas sutiles */
+  background-color: #ffffff; /* Fondo blanco limpio (adiós amarillo) */
+  font-size: 15px;
+  color: #1f2937;         /* Color de texto principal legible */
+  font-family: inherit;   /* Hereda la tipografía limpia del resto del sistema */
+
+  /* Comportamiento de tamaño */
+  resize: vertical;       /* Permite agrandar hacia abajo, pero bloquea el ancho */
+  min-height: 90px;       /* Altura inicial cómoda */
+  max-height: 220px;      /* Límite para que no empuje los botones fuera de la vista */
+  box-sizing: border-box;
+  transition: border-color 0.2s ease; /* Suaviza el cambio al hacer clic */
+}
+
+/* Efecto Focus (Cuando el usuario hace clic para escribir) */
+.form-grupo textarea:focus {
+  outline: none;
+  border-color: #2563eb;   /* Cambia al azul de tus botones para dar feedback visual */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); /* Destello azul sutil alrededor */
+}

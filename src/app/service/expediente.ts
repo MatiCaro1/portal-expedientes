@@ -80,5 +80,14 @@ export class ExpedienteService {
     localStorage.setItem(this.storageKey, JSON.stringify(expedientes));
   }
 
+  obtenerPendientes(): Expediente[] {
+  //1. Obtener todos los expedientes
+  const expedientes = this.obtenerExpedientes();
+
+  //2. Filtrar por estado "Pendiente"
+  return expedientes.filter(e => e.estado === 'Pendiente');
+
+  }
+
 
 }

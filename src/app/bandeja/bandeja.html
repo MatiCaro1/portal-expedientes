@@ -39,17 +39,22 @@
         </select>
       </div>
 
-      <!-- Campo: Observaciones (Área de texto) -->
-      <div class="campo">
-        <label>Observaciones</label>
-        <textarea [(ngModel)]="nuevoExpediente.observaciones" placeholder="Ingrese observaciones..."></textarea>
-      </div>
-
       <!-- Campo: Fecha de creación (Calendario) -->
       <div class="campo">
         <label>Fecha</label>
         <input type="date"
           [(ngModel)]="nuevoExpediente.fechaCreacion">
+      </div>
+
+       <!-- Campo: Observaciones (Área de texto) -->
+      <div class="campo-observaciones">
+        <label for="observaciones">Observaciones</label>
+        <textarea
+          id="observaciones"
+          [(ngModel)]="nuevoExpediente.observaciones"
+          placeholder="Ingrese observaciones..."
+          class="textarea-fijo">
+        </textarea>
       </div>
 
       <!-- Botón para ejecutar la lógica de agregado -->

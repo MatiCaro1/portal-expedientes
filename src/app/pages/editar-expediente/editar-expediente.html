@@ -54,6 +54,18 @@
             [class.input-error]="!expediente.fechaCreacion && mensajeError">
         </div>
 
+        <div class="form-grupo">
+          <label for="obs">Observaciones:</label>
+          <textarea
+            id="obs"
+            rows="4"
+            [(ngModel)]="expediente.observaciones"
+            name="observaciones"
+            placeholder="Escribe las observaciones aquí..."
+            required>
+          </textarea>
+        </div>
+
         <!-- Acciones -->
         <div class="acciones-form">
           <button class="btn-primario" (click)="guardarCambios()">Guardar Cambios</button>

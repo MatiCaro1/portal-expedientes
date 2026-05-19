@@ -260,3 +260,18 @@ tr.fila-alta td {
     width: 100%;
   }
 }
+
+/* Asegura que el contenedor ocupe el ancho disponible */
+.campo-observaciones {
+  width: 100%;
+  /* O si usas un sistema de grid/flex, asegúrate de que ocupe las columnas correctas */
+}
+
+.textarea-fijo {
+  width: 100%;          /* Anchura fija adaptada al 100% de su contenedor */
+  min-height: 60px;     /* Altura inicial por defecto */
+  max-height: 200px;    /* Evita que crezca tanto que tape el botón o deforme la tarjeta */
+  resize: vertical;     /* Clave: BLOQUEA el ancho y SOLO permite estirar hacia abajo */
+  box-sizing: border-box; /* Evita que el padding altere el ancho total */
+}
+
