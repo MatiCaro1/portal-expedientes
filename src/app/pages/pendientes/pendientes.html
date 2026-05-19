@@ -1,1 +1,40 @@
-<p>pendientes works!</p>
+<div class="pendientes-container">
+
+  <div class="encabezado">
+    <h2>Mis Expedientes Pendientes</h2>
+    <p>Tienes {{ expedientesPendientes.length }} casos que requieren tu atención.</p>
+  </div>
+
+  <!-- Contenedor de las tarjetas -->
+  <div class="cards-grid">
+
+    @for (exp of expedientesPendientes; track exp.id) {
+      <div class="card" [class.prioridad-alta]="exp.prioridad === 'Alta'">
+
+        <!-- Cabecera de la tarjeta -->
+        <div class="card-header">
+          <span class="badge estado-pendiente">{{ exp.estado }}</span>
+          <span class="fecha">{{ exp.fechaCreacion }}</span>
+        </div>
+
+        <!-- Cuerpo de la tarjeta -->
+        <div class="card-body">
+          <h3 class="titulo">{{ exp.numero }}</h3>
+
+
+          <!-- Aquí usamos el texto de la observación -->
+          <div class="observaciones">
+            <p>{{ exp.observaciones || 'Sin observaciones registradas.' }}</p>
+          </div>
+        </div>
+
+
+      </div>
+    } @empty {
+      <div class="estado-vacio">
+        <p>🎉 ¡Excelente! No tienes expedientes pendientes en este momento.</p>
+      </div>
+    }
+
+  </div>
+</div>

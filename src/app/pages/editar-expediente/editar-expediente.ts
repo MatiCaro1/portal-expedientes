@@ -45,7 +45,7 @@ export class EditarExpediente implements OnInit {
 
    guardarCambios() {
     // Validación
-    if (!this.expediente.numero || !this.expediente.estado || !this.expediente.prioridad || !this.expediente.fechaCreacion || !this.expediente.observaciones) {
+    if (!this.expediente.numero || !this.expediente.estado || !this.expediente.prioridad || !this.expediente.fechaCreacion || this.expediente.observaciones.trim() === '') {
       this.mensajeError = 'Por favor, complete todos los campos.';
       return;
     }
