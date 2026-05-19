@@ -95,7 +95,7 @@
                   {{ expediente.prioridad }}
                 </span>
               </td>
-              <td>{{ expediente.fechaCreacion }}</td>
+              <td>{{ expediente.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
               <td>{{ expediente.observaciones }}</td>
 
               <td class="texto-centro">

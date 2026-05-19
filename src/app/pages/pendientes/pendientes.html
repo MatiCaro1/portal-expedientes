@@ -14,7 +14,7 @@
         <!-- Cabecera de la tarjeta -->
         <div class="card-header">
           <span class="badge estado-pendiente">{{ exp.estado }}</span>
-          <span class="fecha">{{ exp.fechaCreacion }}</span>
+          <span class="fecha">{{ exp.fechaCreacion | date: 'dd/MM/yyyy' }}</span>
         </div>
 
         <!-- Cuerpo de la tarjeta -->

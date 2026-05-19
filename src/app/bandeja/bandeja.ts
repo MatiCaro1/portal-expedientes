@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { Expediente } from '../../models/expediente';
 import { RouterLink } from '@angular/router';
 import { ExpedienteService } from '../service/expediente';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-bandeja',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, DatePipe],
   templateUrl: './bandeja.html',
   styleUrl: './bandeja.css',
 })

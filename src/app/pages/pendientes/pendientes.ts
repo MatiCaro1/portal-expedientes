@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpedienteService } from '../../service/expediente';
 import { Expediente } from '../../../models/expediente';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pendientes',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './pendientes.html',
   styleUrl: './pendientes.css',
 })

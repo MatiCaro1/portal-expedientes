@@ -62,15 +62,18 @@
   align-items: flex-end;
 }
 
-.campo {
-  flex: 1;
-  min-width: 200px;
+.campo, .campo-observaciones {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.campo label {
+.campo {
+  flex: 1;
+  min-width: 200px;
+}
+
+.campo label, .campo-observaciones label {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-muted);
