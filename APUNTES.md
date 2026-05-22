@@ -102,3 +102,15 @@ Implementamos la capacidad de modificar expedientes existentes, mejorando la int
 Desarrolle una nueva funcionalidad para el Portal de Expedientes que permita gestionar “observaciones” asociadas a cada expediente. Para ello, agregue un campo de observaciones en la creación y edición de expedientes, mostrando posteriormente esta información tanto en la vista de detalle como en la bandeja. La información debe mantenerse utilizando el servicio ExpedienteService, evitando acceder directamente a localStorage desde los componentes.
  
 Además, cree una nueva vista llamada “Pendientes” accesible desde el menú lateral, donde se muestren únicamente los expedientes con estado “Pendiente”. La navegación debe implementarse utilizando Angular Router y componentes standalone. Como mejora visual, destaque automáticamente los expedientes de prioridad alta utilizando estilos dinámicos.
+
+
+# Actividad - 19-05-2026 
+
+*   Actividad: Los alumnos deberán agregar una nueva funcionalidad que permita registrar un historial básico cada vez que un expediente cambie de estado. Por ejemplo, cuando pase de “Pendiente” a “En proceso” o de “En proceso” a “Finalizado”, el sistema deberá guardar una entrada con la fecha del cambio, el estado anterior, el nuevo estado y una observación breve.
+ 
+Este historial debe mostrarse en la vista de detalle del expediente. La información debe manejarse mediante ExpedienteService, mantenerse en localStorage y visualizarse usando directivas como @if y @for. Como mejora visual, deben aplicar pipes para mostrar la fecha del cambio en formato dd-MM-yyyy.
+
+
+Implemente una nueva funcionalidad llamada “Calendario de vencimientos” para el Portal de Expedientes. Cada expediente deberá incorporar una fecha de vencimiento y el sistema deberá mostrar visualmente cuáles expedientes están próximos a vencer o ya vencieron. Para ello, agregue el nuevo campo en creación y edición de expedientes, muestre la información en la Bandeja y aplique estilos dinámicos según el estado temporal del vencimiento.
+ 
+Además, cree una nueva vista llamada “Próximos a vencer”, accesible desde el menú lateral mediante Angular Router, donde se muestren únicamente los expedientes cuya fecha de vencimiento esté dentro de los próximos 7 días. La solución debe utilizar ExpedienteService, directivas estructurales (@if, @for) y pipes para el formateo de fechas.

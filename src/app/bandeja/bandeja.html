@@ -64,6 +64,47 @@
     </div>
   </section>
 
+  <!-- Filtros -->
+  <section class="seccion-filtros">
+    <h3>Filtrar expedientes</h3>
+    <div class="filtros-contenedor">
+      <select [(ngModel)]="filtroEstado">
+        <option value="">Todos los estados</option>
+        <option value="En Proceso">En Proceso</option>
+        <option value="Finalizado">Finalizado</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Cancelado">Cancelado</option>
+      </select>
+
+      <select [(ngModel)]="filtroPrioridad">
+        <option value="">Todas las prioridades</option>
+        <option value="Alta">Alta</option>
+        <option value="Media">Media</option>
+        <option value="Baja">Baja</option>
+      </select>
+
+      <button (click)="limpiarFiltros()" class="btn-secundario">
+        <span style="margin-right: 8px;">🧹</span> Limpiar Filtros
+      </button>
+    </div>
+    <p class="resultados-info">Resultados Obtenidos: <strong>{{ obtenerExpedientesFiltrados().length }}</strong> de {{ expedientes.length }}</p>
+  </section>
+
+  // Sección: Mensajes de estado según la cantidad de resultados
+  @if (expedientes.length === 0) {
+    <div>
+      No hay expedientes registrados. ¡Agrega tu primer expediente para comenzar a gestionar tus casos!
+    </div>
+  }@else if (obtenerExpedientesFiltrados().length === 0) {
+    <div>
+      No se encontraron expedientes que coincidan con los filtros seleccionados. Intenta ajustar tus criterios de búsqueda.
+    </div>
+  } @else {
+     <div>
+      Se han encontrado {{ obtenerExpedientesFiltrados().length }} expedientes que coinciden con los filtros aplicados.
+    </div>
+  }
+
   <!-- Sección: Tabla de resultados -->
   <section class="seccion-tabla">
     <div class="tabla-contenedor">
@@ -80,7 +121,7 @@
         </thead>
         <tbody>
           <!-- Directiva @for: Itera sobre la lista de expedientes -->
-          @for (expediente of expedientes; track expediente.id) {
+          @for (expediente of obtenerExpedientesFiltrados(); track expediente.id) {
             <tr [class.fila-alta]="expediente.prioridad === 'Alta'">
               <td class="col-numero">{{ expediente.numero }}</td>
               <td>
@@ -96,7 +137,7 @@
                 </span>
               </td>
               <td>{{ expediente.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ expediente.observaciones }}</td>
+              <td>{{ expediente.observaciones || 'Sin observaciones' }}</td>
 
               <td class="texto-centro">
                 <div class="acciones-tabla">
@@ -127,7 +168,7 @@
           } @empty {
             <!-- Se muestra si la lista de expedientes está vacía -->
             <tr>
-              <td colspan="4" class="texto-centro">No hay expedientes registrados.</td>
+              <td colspan="6" class="texto-centro">No hay expedientes registrados.</td>
             </tr>
           }
         </tbody>

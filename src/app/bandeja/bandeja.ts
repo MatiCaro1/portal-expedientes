@@ -25,6 +25,10 @@ export class Bandeja implements OnInit {
     observaciones: '',
   };
 
+  // Variables para el filtrado
+  filtroEstado: string = '';
+  filtroPrioridad: string = '';
+
   constructor(private expedienteService: ExpedienteService) {}
 
 
@@ -105,5 +109,17 @@ export class Bandeja implements OnInit {
       prioridad: '',
       observaciones: '',
     };
+  }
+  obtenerExpedientesFiltrados() {
+    return this.expedientes.filter(expediente => {
+      const cumpleEstado = !this.filtroEstado || expediente.estado === this.filtroEstado;
+      const cumplePrioridad = !this.filtroPrioridad || expediente.prioridad === this.filtroPrioridad;
+      return cumpleEstado && cumplePrioridad;
+    });
+  }
+
+  limpiarFiltros() {
+    this.filtroEstado = '';
+    this.filtroPrioridad = '';
   }
 }
