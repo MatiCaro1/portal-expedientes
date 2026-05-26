@@ -41,9 +41,16 @@
 
       <!-- Campo: Fecha de creación (Calendario) -->
       <div class="campo">
-        <label>Fecha</label>
+        <label>Fecha Creación</label>
         <input type="date"
           [(ngModel)]="nuevoExpediente.fechaCreacion">
+      </div>
+
+      <!-- Campo: Fecha de vencimiento (Calendario) -->
+      <div class="campo">
+        <label>Fecha Vencimiento</label>
+        <input type="date"
+          [(ngModel)]="nuevoExpediente.fechaVencimiento">
       </div>
 
        <!-- Campo: Observaciones (Área de texto) -->
@@ -114,7 +121,8 @@
             <th>Número</th>
             <th>Estado</th>
             <th>Prioridad</th>
-            <th>Fecha de Creación</th>
+            <th>Fecha Creación</th>
+            <th>Fecha Vencimiento</th>
             <th>Observaciones</th>
             <th class="texto-centro">Acciones</th>
           </tr>
@@ -137,6 +145,7 @@
                 </span>
               </td>
               <td>{{ expediente.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ expediente.fechaVencimiento | date: 'dd/MM/yyyy' }}</td>
               <td>{{ expediente.observaciones || 'Sin observaciones' }}</td>
 
               <td class="texto-centro">
@@ -168,7 +177,7 @@
           } @empty {
             <!-- Se muestra si la lista de expedientes está vacía -->
             <tr>
-              <td colspan="6" class="texto-centro">No hay expedientes registrados.</td>
+              <td colspan="7" class="texto-centro">No hay expedientes registrados.</td>
             </tr>
           }
         </tbody>

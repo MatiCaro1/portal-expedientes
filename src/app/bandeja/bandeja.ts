@@ -21,6 +21,7 @@ export class Bandeja implements OnInit {
     numero: '',
     estado: '',
     fechaCreacion: '',
+    fechaVencimiento: '',
     prioridad: '',
     observaciones: '',
   };
@@ -50,7 +51,7 @@ export class Bandeja implements OnInit {
    */
   agregarExpediente() {
     // Validación básica: todos los campos son obligatorios
-    if (!this.nuevoExpediente.numero || !this.nuevoExpediente.estado || !this.nuevoExpediente.fechaCreacion || !this.nuevoExpediente.prioridad) {
+    if (!this.nuevoExpediente.numero || !this.nuevoExpediente.estado || !this.nuevoExpediente.fechaCreacion || !this.nuevoExpediente.fechaVencimiento || !this.nuevoExpediente.prioridad) {
       alert('Por favor, complete todos los campos.');
       return;
     }
@@ -61,6 +62,7 @@ export class Bandeja implements OnInit {
       numero: this.nuevoExpediente.numero,
       estado: this.nuevoExpediente.estado,
       fechaCreacion: this.nuevoExpediente.fechaCreacion,
+      fechaVencimiento: this.nuevoExpediente.fechaVencimiento,
       prioridad: this.nuevoExpediente.prioridad,
       observaciones: this.nuevoExpediente.observaciones,
     };
@@ -106,6 +108,7 @@ export class Bandeja implements OnInit {
       numero: '',
       estado: '',
       fechaCreacion: '',
+      fechaVencimiento: '',
       prioridad: '',
       observaciones: '',
     };

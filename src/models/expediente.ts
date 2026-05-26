@@ -10,6 +10,7 @@ export interface Expediente {
   numero: string;
   estado: string;
   fechaCreacion: string;
+  fechaVencimiento: string;
   prioridad: string;
   observaciones: string;
   historial?: HistorialEstado[];

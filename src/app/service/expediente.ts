@@ -17,9 +17,9 @@ export class ExpedienteService {
     }
 
     const expedentesIniciales: Expediente[] = [
-      { id: 1, numero: 'EXP-001', estado: 'En Proceso', fechaCreacion: '2024-01-01', prioridad: 'Alta', observaciones:'' },
-      { id: 2, numero: 'EXP-002', estado: 'Finalizado', fechaCreacion: '2024-02-01',prioridad: 'Media', observaciones:'' },
-      { id: 3, numero: 'EXP-003', estado: 'Pendiente', fechaCreacion: '2024-03-01', prioridad: 'Baja', observaciones:'' }
+      { id: 1, numero: 'EXP-001', estado: 'En Proceso', fechaCreacion: '2024-01-01', fechaVencimiento: '2024-06-01', prioridad: 'Alta', observaciones:'' },
+      { id: 2, numero: 'EXP-002', estado: 'Finalizado', fechaCreacion: '2024-02-01', fechaVencimiento: '2024-07-01', prioridad: 'Media', observaciones:'' },
+      { id: 3, numero: 'EXP-003', estado: 'Pendiente', fechaCreacion: '2024-03-01', fechaVencimiento: '2024-08-01', prioridad: 'Baja', observaciones:'' }
     ];
 
     this.guardarExpedientes(expedentesIniciales);

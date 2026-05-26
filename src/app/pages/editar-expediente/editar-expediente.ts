@@ -19,6 +19,7 @@ export class EditarExpediente implements OnInit {
     numero: '',
     estado: '',
     fechaCreacion: '',
+    fechaVencimiento: '',
     prioridad: '',
     observaciones: '',
   };
@@ -45,7 +46,7 @@ export class EditarExpediente implements OnInit {
 
    guardarCambios() {
     // Validación
-    if (!this.expediente.numero || !this.expediente.estado || !this.expediente.prioridad || !this.expediente.fechaCreacion || this.expediente.observaciones.trim() === '') {
+    if (!this.expediente.numero || !this.expediente.estado || !this.expediente.prioridad || !this.expediente.fechaCreacion || !this.expediente.fechaVencimiento || this.expediente.observaciones.trim() === '') {
       this.mensajeError = 'Por favor, complete todos los campos.';
       return;
     }

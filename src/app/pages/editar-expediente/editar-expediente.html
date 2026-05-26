@@ -46,12 +46,20 @@
           </select>
         </div>
 
-        <!-- Campo: Fecha -->
+        <!-- Campo: Fecha Creación -->
         <div class="campo">
           <label>Fecha de Creación</label>
           <input type="date"
             [(ngModel)]="expediente.fechaCreacion"
             [class.input-error]="!expediente.fechaCreacion && mensajeError">
+        </div>
+
+        <!-- Campo: Fecha Vencimiento -->
+        <div class="campo">
+          <label>Fecha de Vencimiento</label>
+          <input type="date"
+            [(ngModel)]="expediente.fechaVencimiento"
+            [class.input-error]="!expediente.fechaVencimiento && mensajeError">
         </div>
 
         <div class="form-grupo">
