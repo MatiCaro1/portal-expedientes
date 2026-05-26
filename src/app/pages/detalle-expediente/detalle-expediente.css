@@ -106,3 +106,48 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+/* Historial Styles */
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  color: #111827;
+}
+
+.tabla-historial {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tabla-historial th {
+  text-align: left;
+  padding: 12px;
+  background-color: #f9fafb;
+  color: #374151;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tabla-historial td {
+  padding: 12px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #4b5563;
+}
+
+.tabla-historial tr:last-child td {
+  border-bottom: none;
+}
+
+.badge.small {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+.sin-historial {
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+  margin: 20px 0;
+}

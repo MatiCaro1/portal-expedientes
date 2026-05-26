@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Expediente } from '../../../models/expediente';
 import { ExpedienteService } from '../../service/expediente';
 
 @Component({
   selector: 'app-detalle-expediente',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './detalle-expediente.html',
   styleUrl: './detalle-expediente.css',
 })
@@ -37,8 +38,5 @@ obtenerClasePrioridad(prioridad: string): string {
    return clases[prioridad] || '';
   }
 
-
-
-
-
 }
+

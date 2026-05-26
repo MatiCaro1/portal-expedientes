@@ -40,6 +40,35 @@
       </div>
     </div>
 
+    <!-- Sección de Historial de Cambios -->
+    <div class="card">
+      <h3>Historial de Cambios</h3>
+      @if (expediente.historial && expediente.historial.length > 0) {
+        <table class="tabla-historial">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Estado Anterior</th>
+              <th>Nuevo Estado</th>
+              <th>Observación</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (cambio of expediente.historial; track $index) {
+              <tr>
+                <td>{{ cambio.fecha | date: 'dd-MM-yyyy HH:mm' }}</td>
+                <td><span class="badge small">{{ cambio.estadoAnterior }}</span></td>
+                <td><span class="badge small">{{ cambio.nuevoEstado }}</span></td>
+                <td>{{ cambio.observacion }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      } @else {
+        <p class="sin-historial">No hay cambios de estado registrados aún.</p>
+      }
+    </div>
+
   } @else {
     <div class="mensaje-error-contenedor">
       <p class="mensaje-error">⚠️ No se encontró el expediente solicitado.</p>

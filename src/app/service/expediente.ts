@@ -43,17 +43,31 @@ export class ExpedienteService {
     this.guardarExpedientes(expedientes.filter(e => e.id !== id));
   }
 
-  actualizarExpediente(expediente: Expediente): void {
+  actualizarExpediente(expedienteActualizado: Expediente): void {
     const expedientes = this.obtenerExpedientes();
+    const index = expedientes.findIndex((e) => e.id === expedienteActualizado.id);
 
-    const expedientesActualizados: Expediente[] = expedientes.map(e => {
-      if (e.id === expediente.id) {
-        return expediente;
+    if (index !== -1) {
+      const expedienteAnterior = expedientes[index];
+
+      // Si el estado cambió, registramos en el historial
+      if (expedienteAnterior.estado !== expedienteActualizado.estado) {
+        // Asegurarse de que el historial exista en el objeto actualizado
+        if (!expedienteActualizado.historial) {
+          expedienteActualizado.historial = expedienteAnterior.historial || [];
+        }
+
+        expedienteActualizado.historial.push({
+          fecha: new Date().toISOString(),
+          estadoAnterior: expedienteAnterior.estado,
+          nuevoEstado: expedienteActualizado.estado,
+          observacion: 'Actualizado desde edición',
+        });
       }
-      return e;
-    });
 
-    this.guardarExpedientes(expedientesActualizados);
+      expedientes[index] = expedienteActualizado;
+      this.guardarExpedientes(expedientes);
+    }
   }
 
   contarTotal(): number {
@@ -78,6 +92,35 @@ export class ExpedienteService {
 
   guardarExpedientes(expedientes: Expediente[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(expedientes));
+  }
+
+  cambiarEstado(id: number, nuevoEstado: string, observacion: string): void {
+    const expedientes = this.obtenerExpedientes();
+    const index = expedientes.findIndex((e) => e.id === id);
+
+    if (index !== -1) {
+      const expediente = expedientes[index];
+      const estadoAnterior = expediente.estado;
+
+      // Inicializar historial si no existe
+      if (!expediente.historial) {
+        expediente.historial = [];
+      }
+
+      // Agregar nueva entrada al historial
+      expediente.historial.push({
+        fecha: new Date().toISOString(),
+        estadoAnterior: estadoAnterior,
+        nuevoEstado: nuevoEstado,
+        observacion: observacion,
+      });
+
+      // Actualizar el estado actual
+      expediente.estado = nuevoEstado;
+
+      // Guardar cambios
+      this.guardarExpedientes(expedientes);
+    }
   }
 
   obtenerPendientes(): Expediente[] {
