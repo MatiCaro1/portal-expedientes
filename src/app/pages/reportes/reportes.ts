@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ExpedienteService } from '../../service/expediente';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-reportes',
-  standalone: true, // Indica que el componente es independiente y maneja sus propias importaciones
-  imports: [CommonModule], // Importamos CommonModule para usar funciones básicas de Angular
+  imports: [MatCardModule, MatIconModule],
   templateUrl: './reportes.html',
   styleUrl: './reportes.css',
 })
@@ -24,5 +24,3 @@ export class Reportes implements OnInit {
     this.totalFinalizados = this.expedienteService.contarFinalizados();
   }
 }
-
-

@@ -1,187 +1,220 @@
-<div class="contenedor">
-  <!-- Cabecera principal del portal -->
-  <header class="header">
-    <h1>Portal de Expedientes Electrónicos</h1>
-  </header>
+<div class="bandeja-container">
 
-  <!-- Sección: Formulario para crear nuevos registros -->
-  <section class="seccion-formulario">
-    <h2>Nuevo Expediente</h2>
-    <div class="formulario">
-
-      <!-- Campo: Número de expediente (Texto) -->
-      <div class="campo">
-        <label>Número</label>
-        <input type="text"
-          placeholder="Ej: EXP-123"
-          [(ngModel)]="nuevoExpediente.numero"> <!-- Sincronización bidireccional -->
-      </div>
-
-      <!-- Campo: Estado del expediente (Selección) -->
-      <div class="campo">
-        <label>Estado</label>
-        <select [(ngModel)]="nuevoExpediente.estado">
-          <option value="">Seleccionar estado</option>
-          <option value="En Proceso">En Proceso</option>
-          <option value="Finalizado">Finalizado</option>
-          <option value="Pendiente">Pendiente</option>
-          <option value="Cancelado">Cancelado</option>
-        </select>
-      </div>
-
-       <div class="campo">
-        <label>Prioridad</label>
-        <select [(ngModel)]="nuevoExpediente.prioridad">
-          <option value="">Seleccionar prioridad</option>
-          <option value="Alta">Alta</option>
-          <option value="Media">Media</option>
-          <option value="Baja">Baja</option>
-        </select>
-      </div>
-
-      <!-- Campo: Fecha de creación (Calendario) -->
-      <div class="campo">
-        <label>Fecha Creación</label>
-        <input type="date"
-          [(ngModel)]="nuevoExpediente.fechaCreacion">
-      </div>
-
-      <!-- Campo: Fecha de vencimiento (Calendario) -->
-      <div class="campo">
-        <label>Fecha Vencimiento</label>
-        <input type="date"
-          [(ngModel)]="nuevoExpediente.fechaVencimiento">
-      </div>
-
-       <!-- Campo: Observaciones (Área de texto) -->
-      <div class="campo-observaciones">
-        <label for="observaciones">Observaciones</label>
-        <textarea
-          id="observaciones"
-          [(ngModel)]="nuevoExpediente.observaciones"
-          placeholder="Ingrese observaciones..."
-          class="textarea-fijo">
-        </textarea>
-      </div>
-
-      <!-- Botón para ejecutar la lógica de agregado -->
-      <div class="acciones-form">
-        <button class="btn-primario" (click)="agregarExpediente()">Agregar Expediente</button>
-      </div>
+  <!-- Encabezado de página -->
+  <div class="page-header-block">
+    <div class="header-icon-wrap">
+      <mat-icon>inbox</mat-icon>
     </div>
-  </section>
+    <div>
+      <h1 class="page-title">Bandeja de Expedientes</h1>
+      <p class="page-subtitle-inline">Gestiona, filtra y da seguimiento a todos tus expedientes.</p>
+    </div>
+  </div>
+
+  <!-- Formulario Nuevo Expediente -->
+  <mat-card class="form-card">
+    <mat-card-header>
+      <div mat-card-avatar class="card-avatar-add">
+        <mat-icon>add_circle</mat-icon>
+      </div>
+      <mat-card-title>Nuevo Expediente</mat-card-title>
+      <mat-card-subtitle>Complete los campos para registrar un nuevo expediente</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="form-grid">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="Ej: EXP-123" [(ngModel)]="nuevoExpediente.numero">
+          <mat-icon matSuffix>tag</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select [(ngModel)]="nuevoExpediente.estado">
+            <mat-option value="">Seleccionar estado</mat-option>
+            <mat-option value="En Proceso">En Proceso</mat-option>
+            <mat-option value="Finalizado">Finalizado</mat-option>
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="Cancelado">Cancelado</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Prioridad</mat-label>
+          <mat-select [(ngModel)]="nuevoExpediente.prioridad">
+            <mat-option value="">Seleccionar prioridad</mat-option>
+            <mat-option value="Alta">Alta</mat-option>
+            <mat-option value="Media">Media</mat-option>
+            <mat-option value="Baja">Baja</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha Creación</mat-label>
+          <input matInput type="date" [(ngModel)]="nuevoExpediente.fechaCreacion">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha Vencimiento</mat-label>
+          <input matInput type="date" [(ngModel)]="nuevoExpediente.fechaVencimiento">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="field-full">
+          <mat-label>Observaciones</mat-label>
+          <textarea matInput rows="3"
+            [(ngModel)]="nuevoExpediente.observaciones"
+            placeholder="Ingrese observaciones...">
+          </textarea>
+        </mat-form-field>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="agregarExpediente()">
+        <mat-icon>add</mat-icon> Agregar Expediente
+      </button>
+    </mat-card-actions>
+  </mat-card>
 
   <!-- Filtros -->
-  <section class="seccion-filtros">
-    <h3>Filtrar expedientes</h3>
-    <div class="filtros-contenedor">
-      <select [(ngModel)]="filtroEstado">
-        <option value="">Todos los estados</option>
-        <option value="En Proceso">En Proceso</option>
-        <option value="Finalizado">Finalizado</option>
-        <option value="Pendiente">Pendiente</option>
-        <option value="Cancelado">Cancelado</option>
-      </select>
+  <mat-card class="filter-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>filter_list</mat-icon>
+      <mat-card-title>Filtrar expedientes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="filtros-row">
 
-      <select [(ngModel)]="filtroPrioridad">
-        <option value="">Todas las prioridades</option>
-        <option value="Alta">Alta</option>
-        <option value="Media">Media</option>
-        <option value="Baja">Baja</option>
-      </select>
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select [(ngModel)]="filtroEstado">
+            <mat-option value="">Todos los estados</mat-option>
+            <mat-option value="En Proceso">En Proceso</mat-option>
+            <mat-option value="Finalizado">Finalizado</mat-option>
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="Cancelado">Cancelado</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <button (click)="limpiarFiltros()" class="btn-secundario">
-        <span style="margin-right: 8px;">🧹</span> Limpiar Filtros
-      </button>
-    </div>
-    <p class="resultados-info">Resultados Obtenidos: <strong>{{ obtenerExpedientesFiltrados().length }}</strong> de {{ expedientes.length }}</p>
-  </section>
+        <mat-form-field appearance="outline">
+          <mat-label>Prioridad</mat-label>
+          <mat-select [(ngModel)]="filtroPrioridad">
+            <mat-option value="">Todas las prioridades</mat-option>
+            <mat-option value="Alta">Alta</mat-option>
+            <mat-option value="Media">Media</mat-option>
+            <mat-option value="Baja">Baja</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-  
-  @if (expedientes.length === 0) {
-    <div>
-      No hay expedientes registrados. ¡Agrega tu primer expediente para comenzar a gestionar tus casos!
-    </div>
-  }@else if (obtenerExpedientesFiltrados().length === 0) {
-    <div>
-      No se encontraron expedientes que coincidan con los filtros seleccionados. Intenta ajustar tus criterios de búsqueda.
-    </div>
-  } @else {
-     <div>
-      Se han encontrado {{ obtenerExpedientesFiltrados().length }} expedientes que coinciden con los filtros aplicados.
-    </div>
-  }
+        <button mat-stroked-button (click)="limpiarFiltros()">
+          <mat-icon>clear</mat-icon> Limpiar Filtros
+        </button>
+      </div>
+      <p class="resultados-info">
+        Resultados: <strong>{{ obtenerExpedientesFiltrados().length }}</strong> de {{ expedientes.length }}
+      </p>
+    </mat-card-content>
+  </mat-card>
 
-  <!-- Sección: Tabla de resultados -->
-  <section class="seccion-tabla">
-    <div class="tabla-contenedor">
-      <table>
-        <thead>
-          <tr>
-            <th>Número</th>
-            <th>Estado</th>
-            <th>Prioridad</th>
-            <th>Fecha Creación</th>
-            <th>Fecha Vencimiento</th>
-            <th>Observaciones</th>
-            <th class="texto-centro">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Directiva @for: Itera sobre la lista de expedientes -->
-          @for (expediente of obtenerExpedientesFiltrados(); track expediente.id) {
-            <tr [class.fila-alta]="expediente.prioridad === 'Alta'">
-              <td class="col-numero">{{ expediente.numero }}</td>
-              <td>
-                <!-- Badge dinámico: cambia de color según el estado -->
-                <span class="badge" [class]="expediente.estado.toLowerCase().replace(' ', '-')">
-                  {{ expediente.estado }}
+  <!-- Tabla -->
+  <mat-card class="table-card">
+    <mat-card-content>
+      @if (expedientes.length === 0) {
+        <div class="empty-state">
+          <mat-icon>inbox</mat-icon>
+          <p>No hay expedientes registrados. ¡Agrega tu primer expediente para comenzar!</p>
+        </div>
+      } @else {
+        <div class="table-container">
+          <table mat-table [dataSource]="obtenerExpedientesFiltrados()">
+
+            <ng-container matColumnDef="numero">
+              <th mat-header-cell *matHeaderCellDef>Número</th>
+              <td mat-cell *matCellDef="let exp">
+                <strong class="col-numero">{{ exp.numero }}</strong>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let exp">
+                <span class="badge" [class]="exp.estado.toLowerCase().replace(' ', '-')">
+                  {{ exp.estado }}
                 </span>
               </td>
-              <td>
-                <!-- Badge dinámico para la prioridad -->
-                <span class="badge" [class]="'prioridad-' + expediente.prioridad.toLowerCase()">
-                  {{ expediente.prioridad }}
+            </ng-container>
+
+            <ng-container matColumnDef="prioridad">
+              <th mat-header-cell *matHeaderCellDef>Prioridad</th>
+              <td mat-cell *matCellDef="let exp">
+                <span class="badge" [class]="'prioridad-' + exp.prioridad.toLowerCase()">
+                  {{ exp.prioridad }}
                 </span>
               </td>
-              <td>{{ expediente.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ expediente.fechaVencimiento | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ expediente.observaciones || 'Sin observaciones' }}</td>
+            </ng-container>
 
-              <td class="texto-centro">
-                <div class="acciones-tabla">
-                  <!-- Botón para cambiar estado dinámicamente -->
-                  <button class="btn-icon" (click)="actualizarEstado(expediente)" title="Cambiar estado">
-                    <span class="icon-refresh">🔄</span>
-                  </button>
+            <ng-container matColumnDef="fechaCreacion">
+              <th mat-header-cell *matHeaderCellDef>Fecha Creación</th>
+              <td mat-cell *matCellDef="let exp">{{ exp.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
+            </ng-container>
 
-                  <!-- Botón de ver detalle -->
-                  <button class="btn-icon btn-ver" [routerLink]="['/detalle-expediente', expediente.id]" title="Ver detalle">
-                    <span class="icon-eye">👀</span>
-                  </button>
+            <ng-container matColumnDef="fechaVencimiento">
+              <th mat-header-cell *matHeaderCellDef>Fecha Vencimiento</th>
+              <td mat-cell *matCellDef="let exp">
+                <span class="badge" [ngClass]="calcularEstadoVencimiento(exp.fechaVencimiento)">
+                  {{ exp.fechaVencimiento | date: 'dd/MM/yyyy' }}
+                </span>
+              </td>
+            </ng-container>
 
-                  <!-- Botón de editar -->
-                  <button class="btn-icon btn-editar" [routerLink]="['/expedientes/editar', expediente.id]" title="Editar">
-                    <span class="icon-edit">✏️</span>
-                  </button>
+            <ng-container matColumnDef="observaciones">
+              <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+              <td mat-cell *matCellDef="let exp" class="col-obs">
+                {{ exp.observaciones || 'Sin observaciones' }}
+              </td>
+            </ng-container>
 
-                  <!-- Botón de eliminar -->
-                  <button class="btn-icon btn-eliminar" (click)="eliminarExpediente(expediente.id)" title="Eliminar">
-                    <span class="icon-trash">🗑️</span>
-                  </button>
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef class="text-center">Acciones</th>
+              <td mat-cell *matCellDef="let exp" class="text-center">
+                <button mat-icon-button color="primary"
+                  (click)="actualizarEstado(exp)"
+                  matTooltip="Cambiar estado">
+                  <mat-icon>refresh</mat-icon>
+                </button>
+                <button mat-icon-button color="accent"
+                  [routerLink]="['/detalle-expediente', exp.id]"
+                  matTooltip="Ver detalle">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+                <button mat-icon-button
+                  [routerLink]="['/expedientes/editar', exp.id]"
+                  matTooltip="Editar">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn"
+                  (click)="eliminarExpediente(exp.id)"
+                  matTooltip="Eliminar">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
 
+            <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnasTabla;"
+              [class.fila-alta]="row.prioridad === 'Alta'">
+            </tr>
 
-                </div>
+            <tr class="mat-row" *matNoDataRow>
+              <td colspan="7" class="text-center" style="padding: 24px;">
+                No hay expedientes que coincidan con los filtros seleccionados.
               </td>
             </tr>
-          } @empty {
-            <!-- Se muestra si la lista de expedientes está vacía -->
-            <tr>
-              <td colspan="7" class="texto-centro">No hay expedientes registrados.</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  </section>
+          </table>
+        </div>
+      }
+    </mat-card-content>
+  </mat-card>
+
 </div>

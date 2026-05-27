@@ -1,1 +1,394 @@
-/* You can add global styles to this file, and also import other style files */
+/* ══════════════════════════════════════════════
+   GLOBAL STYLES — Portal de Expedientes
+   ══════════════════════════════════════════════ */
+
+/* ── Page layout ─────────────────────────────── */
+:root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Variables de color para facilitar el mantenimiento */
+:root {
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --border-color: #e8eaf0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --sidebar-bg: #ffffff;
+}
+
+.dark-mode {
+  --bg-page: #0f172a;
+  --bg-card: #1e293b;
+  --border-color: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --sidebar-bg: #1e293b;
+}
+
+body {
+  font-family: 'Inter', sans-serif !important;
+  background-color: var(--bg-page) !important;
+}
+
+.page-container {
+  padding: 28px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.page-header mat-icon {
+  font-size: 32px;
+  height: 32px;
+  width: 32px;
+  color: #1a56db;
+  background: #eff6ff;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.dark-mode .page-header mat-icon {
+  background: #1e293b;
+  color: #60a5fa;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 4px;
+}
+
+.page-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 24px;
+}
+
+/* ── Cards ───────────────────────────────────── */
+mat-card {
+  background: var(--bg-card) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04) !important;
+  border: 1px solid var(--border-color) !important;
+  transition: box-shadow 0.2s ease;
+}
+
+mat-card-title {
+  color: var(--text-main) !important;
+}
+
+mat-card-subtitle {
+  color: var(--text-muted) !important;
+}
+
+.dark-mode mat-card {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25) !important;
+}
+
+mat-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06) !important;
+}
+
+.dark-mode mat-card:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;
+}
+
+/* ── Mat-table ───────────────────────────────── */
+.mat-mdc-table {
+  background: transparent !important;
+}
+
+.mat-mdc-header-row {
+  background: var(--bg-page) !important;
+}
+
+.mat-mdc-header-cell {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--text-muted) !important;
+  border-bottom: 2px solid var(--border-color) !important;
+  padding: 14px 16px !important;
+}
+
+.mat-mdc-row {
+  transition: background 0.15s ease;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background: var(--bg-page);
+}
+
+.mat-mdc-cell {
+  font-size: 0.875rem !important;
+  color: var(--text-main);
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* ── Buttons ─────────────────────────────────── */
+.mat-mdc-raised-button {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  padding: 0 20px !important;
+}
+
+/* Mejora de botones en modo oscuro */
+.dark-mode .mat-mdc-raised-button.mat-primary {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+.mat-mdc-outlined-button, .mat-mdc-stroked-button {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+.dark-mode .mat-mdc-outlined-button, 
+.dark-mode .mat-mdc-stroked-button {
+  border-color: var(--border-color) !important;
+  color: var(--text-main) !important;
+}
+
+.mat-mdc-button .mat-icon, 
+.mat-mdc-raised-button .mat-icon, 
+.mat-mdc-outlined-button .mat-icon, 
+.mat-mdc-stroked-button .mat-icon {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ── Form fields ─────────────────────────────── */
+.mat-mdc-form-field {
+  font-size: 0.9rem !important;
+}
+
+/* Forzar colores de texto en inputs y selects para modo oscuro */
+.mat-mdc-form-field-focus-indicator {
+  color: var(--text-main) !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  color: var(--text-main) !important;
+}
+
+.mat-mdc-select-value {
+  color: var(--text-main) !important;
+}
+
+.mat-mdc-form-field mat-icon {
+  color: var(--text-muted) !important;
+}
+
+/* Floating label y flecha del select */
+.mdc-floating-label {
+  color: var(--text-muted) !important;
+}
+
+.dark-mode .mat-mdc-select-arrow {
+  color: var(--text-muted) !important;
+}
+
+/* Placeholder - Solo definimos color, dejamos que Material maneje la opacidad/visibilidad */
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* ── Overlays Fix (Dropdowns, Selects, Menus) ── */
+/* 
+   Soluciona el problema de transparencia en los menús desplegables 
+   asegurando un fondo sólido, sombra y posicionamiento correcto.
+*/
+.cdk-overlay-pane {
+  z-index: 1000 !important;
+}
+
+.mat-mdc-select-panel,
+.mat-mdc-menu-panel,
+.mat-mdc-autocomplete-panel {
+  background-color: var(--bg-card) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  padding: 4px 0 !important;
+  opacity: 1 !important;
+}
+
+.mat-mdc-option {
+  color: var(--text-main) !important;
+  background-color: var(--bg-card) !important;
+}
+
+.mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background-color: var(--bg-page) !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+  background-color: #1a56db !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+  background-color: #3b82f6 !important;
+}
+
+/* ── Badges ──────────────────────────────────── */
+.badge {
+  padding: 0.22rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: 0.02em;
+}
+
+.badge.small { padding: 0.15rem 0.5rem; font-size: 0.68rem; }
+
+.badge.en-proceso  { background-color: #fef3c7; color: #92400e; }
+.badge.finalizado  { background-color: #dcfce7; color: #166534; }
+.badge.pendiente   { background-color: #f1f5f9; color: #475569; }
+.badge.cancelado   { background-color: #fee2e2; color: #991b1b; }
+
+.badge.prioridad-alta  { background-color: #fee2e2; color: #991b1b; }
+.badge.prioridad-media { background-color: #fef3c7; color: #92400e; }
+.badge.prioridad-baja  { background-color: #dcfce7; color: #166534; }
+
+.badge.vencimiento-vencido {
+  background-color: #fee2e2; color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+.badge.vencimiento-proximo {
+  background-color: #fef3c7; color: #92400e;
+  border: 1px solid #fbbf24;
+}
+.badge.vencimiento-vigente {
+  background-color: #dcfce7; color: #166534;
+  border: 1px solid #86efac;
+}
+
+/* ── Empty state ─────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 56px 24px;
+  color: #94a3b8;
+}
+
+.empty-state mat-icon {
+  font-size: 56px;
+  height: 56px;
+  width: 56px;
+  margin-bottom: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.4;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  margin: 0 0 20px;
+  color: #64748b;
+}
+
+/* ── Utilities ───────────────────────────────── */
+.table-container {
+  overflow-x: auto;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+table {
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════════
+   DARK MODE — Global custom CSS overrides
+   (Material components se adaptan solos vía
+   color-scheme: dark en html.dark-mode)
+   ══════════════════════════════════════════════ */
+
+/* ── Cards ───────────────────────────────────── */
+html.dark-mode mat-card {
+  border-color: #30363d !important;
+}
+
+/* ── Table ───────────────────────────────────── */
+html.dark-mode .mat-mdc-header-row {
+  background: #161b22 !important;
+}
+
+html.dark-mode .mat-mdc-header-cell {
+  color: #8b949e !important;
+  border-bottom-color: #30363d !important;
+}
+
+html.dark-mode .mat-mdc-cell {
+  color: #c9d1d9 !important;
+  border-bottom-color: #21262d !important;
+}
+
+html.dark-mode .mat-mdc-row:hover .mat-mdc-cell {
+  background: #1c2128 !important;
+}
+
+html.dark-mode .fila-alta td {
+  background-color: #2d1b1b !important;
+}
+
+html.dark-mode .fila-alta:hover td {
+  background-color: #3d2020 !important;
+}
+
+/* ── Dropdowns / Select ──────────────────────── */
+html.dark-mode .mat-mdc-select-panel,
+html.dark-mode .mat-mdc-menu-panel,
+html.dark-mode .mat-mdc-autocomplete-panel {
+  background-color: #1e2634 !important;
+  border-color: #30363d !important;
+}
+
+html.dark-mode .mat-mdc-option {
+  color: #c9d1d9 !important;
+  background-color: #1e2634 !important;
+}
+
+html.dark-mode .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background-color: #2d3748 !important;
+}
+
+html.dark-mode .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+  background-color: #1f3044 !important;
+  color: #79c0ff !important;
+}
+
+/* ── Text / Typography (page-level, sin encapsulación) ── */
+html.dark-mode .page-title    { color: #e6edf3; }
+html.dark-mode .page-subtitle { color: #8b949e; }
+
+/* ── Badges globales ─────────────────────────── */
+html.dark-mode .badge.pendiente {
+  background-color: #21262d;
+  color: #8b949e;
+}
+
+/* ── Smooth transition ───────────────────────── */
+mat-card,
+.mat-mdc-cell,
+.mat-mdc-header-cell,
+.mat-mdc-row,
+.app-sidenav,
+.main-content {
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}

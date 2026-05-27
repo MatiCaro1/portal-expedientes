@@ -1,0 +1,95 @@
+.about-card {
+  max-width: 640px;
+}
+
+.about-avatar {
+  background: #eff6ff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-avatar mat-icon {
+  color: #1a56db;
+  font-size: 22px;
+  height: 22px;
+  width: 22px;
+}
+
+mat-card-content p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+.feature-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.feature-icon {
+  color: #1a56db;
+  background: #eff6ff;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.feature-title {
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+}
+
+.feature-desc {
+  color: #64748b;
+  margin: 0;
+  font-size: 0.83rem;
+}
+
+/* ══════════════════════════════════════════════
+   DARK MODE
+   ══════════════════════════════════════════════ */
+:host-context(html.dark-mode) .about-avatar {
+  background: #1f3044;
+}
+
+:host-context(html.dark-mode) .about-avatar mat-icon {
+  color: #79c0ff;
+}
+
+:host-context(html.dark-mode) mat-card-content p {
+  color: #8b949e;
+}
+
+:host-context(html.dark-mode) .feature-item {
+  background: #1c2128;
+}
+
+:host-context(html.dark-mode) .feature-icon {
+  background: #1f3044;
+  color: #79c0ff;
+}
+
+:host-context(html.dark-mode) .feature-title {
+  color: #e6edf3;
+}
+
+:host-context(html.dark-mode) .feature-desc {
+  color: #8b949e;
+}

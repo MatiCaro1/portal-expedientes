@@ -1,0 +1,90 @@
+<div class="page-container">
+
+  <div class="page-header-block">
+    <div class="header-icon-wrap">
+      <mat-icon>event_busy</mat-icon>
+    </div>
+    <div>
+      <h1 class="page-title">Próximos a Vencer</h1>
+      <p class="page-subtitle">Expedientes con vencimiento en los próximos 7 días.</p>
+    </div>
+  </div>
+
+  @if (expedientes.length > 0) {
+    <mat-card>
+      <mat-card-content>
+        <div class="table-container">
+          <table mat-table [dataSource]="expedientes">
+
+            <ng-container matColumnDef="numero">
+              <th mat-header-cell *matHeaderCellDef>Número</th>
+              <td mat-cell *matCellDef="let exp">
+                <strong class="col-numero">{{ exp.numero }}</strong>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let exp">
+                <span class="badge" [class]="exp.estado.toLowerCase().replace(' ', '-')">
+                  {{ exp.estado }}
+                </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="prioridad">
+              <th mat-header-cell *matHeaderCellDef>Prioridad</th>
+              <td mat-cell *matCellDef="let exp">
+                <span class="badge" [class]="'prioridad-' + exp.prioridad.toLowerCase()">
+                  {{ exp.prioridad }}
+                </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fechaVencimiento">
+              <th mat-header-cell *matHeaderCellDef>Fecha Vencimiento</th>
+              <td mat-cell *matCellDef="let exp">
+                <span class="badge vencimiento-proximo">
+                  📅 {{ exp.fechaVencimiento | date: 'dd/MM/yyyy' }}
+                </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef class="text-center">Acciones</th>
+              <td mat-cell *matCellDef="let exp" class="text-center">
+                <button mat-icon-button color="primary"
+                  [routerLink]="['/detalle-expediente', exp.id]"
+                  matTooltip="Ver detalle">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  } @else {
+    <mat-card>
+      <mat-card-content>
+        <div class="empty-state">
+          <mat-icon>event_available</mat-icon>
+          <p>No hay expedientes que venzan en los próximos 7 días. ¡Todo en orden!</p>
+          <button mat-raised-button color="primary" routerLink="/bandeja">
+            <mat-icon>inbox</mat-icon> Ir a la Bandeja Principal
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  <div class="page-actions">
+    <button mat-stroked-button routerLink="/inicio">
+      <mat-icon>arrow_back</mat-icon> Volver al Inicio
+    </button>
+  </div>
+</div>

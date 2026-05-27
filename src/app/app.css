@@ -1,39 +1,154 @@
-.layout{
+/* ── Toolbar ─────────────────────────────────────────── */
+.app-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  padding: 0 24px;
+  background: linear-gradient(135deg, #1a56db 0%, #1565c0 100%) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  height: 60px;
+}
+
+.toolbar-brand {
   display: flex;
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+  gap: 12px;
 }
 
-.menu-lateral{
-  width: 240px;
-  background-color: black;
-  color: white;
-  padding: 24px;
+.brand-icon {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+  color: #e3f2fd;
 }
 
-.menu-lateral h2{
- margin-bottom: 20px
-}
-
-.menu-lateral nav{
+.brand-text {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  line-height: 1.2;
 }
 
-.menu-lateral a {
-  color: azure;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 10px;
-  border-radius: 6px;
+.brand-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
 }
 
-.menu-lateral a:hover {
-  background-color: #333;
+.brand-subtitle {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.contenido {
+/* ── Sidenav container ───────────────────────────────── */
+.sidenav-container {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.app-sidenav {
+  width: 230px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Nav section label ───────────────────────────────── */
+.nav-section-label {
+  padding: 20px 20px 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ── Nav list & items ────────────────────────────────── */
+.nav-list {
+  padding: 0 8px;
+}
+
+.nav-item {
+  border-radius: 10px !important;
+  margin-bottom: 2px !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+  color: var(--text-muted);
+}
+
+.nav-item mat-icon {
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+
+.nav-item:hover {
+  background-color: var(--bg-page) !important;
+  color: var(--text-main);
+}
+
+.nav-item:hover mat-icon {
+  color: #1a56db;
+}
+
+.dark-mode .nav-item:hover mat-icon {
+  color: #60a5fa;
+}
+
+.nav-activo {
+  background-color: #eff6ff !important;
+  color: #1a56db !important;
+  font-weight: 600 !important;
+}
+
+.dark-mode .nav-activo {
+  background-color: #1e293b !important;
+  color: #60a5fa !important;
+}
+
+.nav-activo mat-icon {
+  color: #1a56db !important;
+}
+
+.dark-mode .nav-activo mat-icon {
+  color: #60a5fa !important;
+}
+
+.nav-divider {
+  margin: 12px 0 !important;
+  border-top-color: var(--border-color) !important;
+}
+
+.nav-item-secondary {
+  opacity: 0.75;
+}
+
+/* ── Theme toggle ────────────────────────────────────── */
+.toolbar-spacer {
   flex: 1;
-  padding: 24px;
 }
+
+.theme-toggle-btn {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+.theme-toggle-btn:hover {
+  color: #fff !important;
+  background: rgba(255,255,255,0.12) !important;
+}
+
+/* ── Main content ────────────────────────────────────── */
+.main-content {
+  background: var(--bg-page);
+  overflow-y: auto;
+  transition: background 0.3s ease;
+}
+
+/* ══════════════════════════════════════════════
+   DARK MODE — Layout overrides (Deprecating hardcoded values)
+   ══════════════════════════════════════════════ */
+

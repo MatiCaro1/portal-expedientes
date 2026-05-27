@@ -1,16 +1,64 @@
-<div class="layout">
-  <aside class="menu-lateral">
-    <h2>Portal</h2>
-    <nav>
-      <a routerLink="/inicio" routerLinkActive="activo">Inicio</a>
-      <a routerLink="/bandeja" routerLinkActive="activo">Bandeja</a>
-      <a routerLink="/acerca" routerLinkActive="activo">Acerca de</a>
-      <a routerLink="/reportes" routerLinkActive="activo">Reportes</a>
-      <a routerLink="/pendientes" routerLinkActive="activo">Pendientes</a>
-    </nav>
-  </aside>
+<mat-toolbar color="primary" class="app-toolbar">
+  <div class="toolbar-brand">
+    <mat-icon class="brand-icon">gavel</mat-icon>
+    <div class="brand-text">
+      <span class="brand-title">Portal de Expedientes</span>
+      <span class="brand-subtitle">Sistema Electrónico</span>
+    </div>
+  </div>
 
-  <main class="contenido">
+  <span class="toolbar-spacer"></span>
+
+  <button mat-icon-button
+    (click)="toggleTheme()"
+    [matTooltip]="isDarkMode() ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
+    class="theme-toggle-btn">
+    <mat-icon>{{ isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="app-sidenav">
+
+    <div class="nav-section-label">NAVEGACIÓN</div>
+
+    <mat-nav-list class="nav-list">
+      <a mat-list-item routerLink="/inicio" routerLinkActive="nav-activo" class="nav-item">
+        <mat-icon matListItemIcon>home</mat-icon>
+        <span matListItemTitle>Inicio</span>
+      </a>
+      <a mat-list-item routerLink="/bandeja" routerLinkActive="nav-activo" class="nav-item">
+        <mat-icon matListItemIcon>inbox</mat-icon>
+        <span matListItemTitle>Bandeja</span>
+      </a>
+      <a mat-list-item routerLink="/reportes" routerLinkActive="nav-activo" class="nav-item">
+        <mat-icon matListItemIcon>bar_chart</mat-icon>
+        <span matListItemTitle>Reportes</span>
+      </a>
+      <a mat-list-item routerLink="/pendientes" routerLinkActive="nav-activo" class="nav-item">
+        <mat-icon matListItemIcon>pending_actions</mat-icon>
+        <span matListItemTitle>Pendientes</span>
+      </a>
+      <a mat-list-item routerLink="/proximos-a-vencer" routerLinkActive="nav-activo" class="nav-item">
+        <mat-icon matListItemIcon>event_busy</mat-icon>
+        <span matListItemTitle>Próximos a vencer</span>
+      </a>
+      <a mat-list-item routerLink="/kanban" routerLinkActive="nav-activo" class="nav-item">
+        <mat-icon matListItemIcon>view_kanban</mat-icon>
+        <span matListItemTitle>Kanban</span>
+      </a>
+
+      <mat-divider class="nav-divider"></mat-divider>
+
+      <a mat-list-item routerLink="/acerca" routerLinkActive="nav-activo" class="nav-item nav-item-secondary">
+        <mat-icon matListItemIcon>info</mat-icon>
+        <span matListItemTitle>Acerca de</span>
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
     <router-outlet></router-outlet>
-  </main>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

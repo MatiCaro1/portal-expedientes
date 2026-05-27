@@ -132,5 +132,24 @@ export class ExpedienteService {
 
   }
 
+  /**
+   * Obtiene los expedientes que vencen en los próximos 7 días (y no han vencido).
+   */
+  getExpedientesProximosAVencer(): Expediente[] {
+    const expedientes = this.obtenerExpedientes();
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    const limite = new Date();
+    limite.setDate(hoy.getDate() + 7);
+    limite.setHours(23, 59, 59, 999);
+
+    return expedientes.filter(e => {
+      if (!e.fechaVencimiento) return false;
+      const fechaVenc = new Date(e.fechaVencimiento);
+      return fechaVenc >= hoy && fechaVenc <= limite;
+    });
+  }
+
 
 }

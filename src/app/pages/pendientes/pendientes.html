@@ -1,40 +1,56 @@
-<div class="pendientes-container">
+<div class="page-container">
 
-  <div class="encabezado">
-    <h2>Mis Expedientes Pendientes</h2>
-    <p>Tienes {{ expedientesPendientes.length }} casos que requieren tu atención.</p>
+  <div class="page-header-block">
+    <div class="header-icon-wrap">
+      <mat-icon>pending_actions</mat-icon>
+    </div>
+    <div>
+      <h1 class="page-title">Mis Expedientes Pendientes</h1>
+      <p class="page-subtitle">
+        @if (expedientesPendientes.length > 0) {
+          Tienes <strong>{{ expedientesPendientes.length }}</strong> casos que requieren tu atención.
+        } @else {
+          No hay casos pendientes en este momento.
+        }
+      </p>
+    </div>
   </div>
 
-  <!-- Contenedor de las tarjetas -->
   <div class="cards-grid">
-
     @for (exp of expedientesPendientes; track exp.id) {
-      <div class="card" [class.prioridad-alta]="exp.prioridad === 'Alta'">
-
-        <!-- Cabecera de la tarjeta -->
-        <div class="card-header">
-          <span class="badge estado-pendiente">{{ exp.estado }}</span>
-          <span class="fecha">{{ exp.fechaCreacion | date: 'dd/MM/yyyy' }}</span>
-        </div>
-
-        <!-- Cuerpo de la tarjeta -->
-        <div class="card-body">
-          <h3 class="titulo">{{ exp.numero }}</h3>
-
-
-          <!-- Aquí usamos el texto de la observación -->
-          <div class="observaciones">
-            <p>{{ exp.observaciones || 'Sin observaciones registradas.' }}</p>
+      <mat-card [class.card-prioridad-alta]="exp.prioridad === 'Alta'">
+        <mat-card-header>
+          <div mat-card-avatar class="card-avatar">
+            <mat-icon>description</mat-icon>
           </div>
-        </div>
+          <mat-card-title>{{ exp.numero }}</mat-card-title>
+          <mat-card-subtitle>Creado: {{ exp.fechaCreacion | date: 'dd/MM/yyyy' }}</mat-card-subtitle>
+        </mat-card-header>
 
+        <mat-card-content>
+          <p class="obs-text">{{ exp.observaciones || 'Sin observaciones registradas.' }}</p>
+        </mat-card-content>
 
-      </div>
+        <mat-card-footer class="card-foot">
+          <span class="badge estado-pendiente">{{ exp.estado }}</span>
+          @if (exp.prioridad === 'Alta') {
+            <span class="badge prioridad-alta">
+              ⚡ Alta prioridad
+            </span>
+          } @else {
+            <span class="badge" [class]="'prioridad-' + exp.prioridad.toLowerCase()">{{ exp.prioridad }}</span>
+          }
+          <span class="vence-txt" [class.vence-urgente]="esProximoAVencer(exp.fechaVencimiento)">
+            Vence: {{ exp.fechaVencimiento | date: 'dd/MM/yyyy' }}
+          </span>
+        </mat-card-footer>
+      </mat-card>
+
     } @empty {
-      <div class="estado-vacio">
-        <p>🎉 ¡Excelente! No tienes expedientes pendientes en este momento.</p>
+      <div class="empty-state" style="grid-column: 1 / -1;">
+        <mat-icon>celebration</mat-icon>
+        <p>¡Excelente! No tienes expedientes pendientes en este momento.</p>
       </div>
     }
-
   </div>
 </div>

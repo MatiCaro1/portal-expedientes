@@ -1,1 +1,55 @@
-<h2>Bienvenido al Portal de Expedientes Electrónicos</h2>
+<div class="page-container">
+
+  <div class="hero-card">
+    <div class="hero-icon-wrap">
+      <mat-icon>gavel</mat-icon>
+    </div>
+    <h1 class="hero-title">Portal de Expedientes Electrónicos</h1>
+    <p class="hero-subtitle">
+      Gestiona, consulta y da seguimiento a todos tus expedientes desde un solo lugar.
+    </p>
+    <div class="hero-actions">
+      <button mat-raised-button color="primary" routerLink="/bandeja">
+        <mat-icon>inbox</mat-icon> Ir a la Bandeja
+      </button>
+      <button mat-stroked-button color="primary" routerLink="/reportes">
+        <mat-icon>bar_chart</mat-icon> Ver Reportes
+      </button>
+    </div>
+  </div>
+
+  <div class="quick-links">
+    <mat-card class="quick-card" routerLink="/bandeja">
+      <mat-card-content>
+        <mat-icon class="quick-icon blue">inbox</mat-icon>
+        <p class="quick-label">Bandeja</p>
+        <p class="quick-desc">Gestiona y crea expedientes</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="quick-card" routerLink="/pendientes">
+      <mat-card-content>
+        <mat-icon class="quick-icon orange">pending_actions</mat-icon>
+        <p class="quick-label">Pendientes</p>
+        <p class="quick-desc">Revisá los casos en espera</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="quick-card" routerLink="/proximos-a-vencer">
+      <mat-card-content>
+        <mat-icon class="quick-icon red">event_busy</mat-icon>
+        <p class="quick-label">Próximos a vencer</p>
+        <p class="quick-desc">Plazos críticos esta semana</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="quick-card" routerLink="/reportes">
+      <mat-card-content>
+        <mat-icon class="quick-icon green">bar_chart</mat-icon>
+        <p class="quick-label">Reportes</p>
+        <p class="quick-desc">Resumen estadístico</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

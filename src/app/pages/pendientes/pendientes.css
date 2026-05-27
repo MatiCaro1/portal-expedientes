@@ -1,166 +1,125 @@
-/* Agrega esto a tu bandeja.css y pendientes.css */
-/* Contenedor principal */
-.pendientes-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.encabezado {
+.page-header-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
   margin-bottom: 24px;
 }
 
-.encabezado h2 {
-  color: #1a2b4c; /* Azul corporativo */
-  margin-bottom: 5px;
+.header-icon-wrap {
+  background: #fff7ed;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-shrink: 0;
 }
 
-.encabezado p {
-  color: #64748b;
+.header-icon-wrap mat-icon {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+  color: #c2410c;
 }
 
-/* Grilla de tarjetas (Responsive) */
+/* ── Cards grid ──────────────────────────────── */
 .cards-grid {
   display: grid;
-  /* Esto crea columnas que se adaptan: mínimo 320px de ancho, si sobra espacio crecen */
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
 }
 
-/* Diseño de la Tarjeta */
-.card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e8f0;
+.card-avatar {
+  background: #eff6ff;
   display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  overflow: hidden;
-}
-
-/* Efecto al pasar el mouse */
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Borde izquierdo rojo si es prioridad alta (Paso 5 de tu tarea) */
-.card.prioridad-alta {
-  border-left: 5px solid #ef4444;
-}
-
-/* Cabecera */
-.card-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 20px 10px;
-}
-
-.badge.estado-pendiente {
-  background-color: #fef08a; /* Amarillo suave */
-  color: #854d0e; /* Texto amarillo oscuro */
-  padding: 4px 10px;
-  border-radius: 9999px; /* Forma de píldora */
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.fecha {
-  color: #94a3b8;
-  font-size: 0.85rem;
-}
-
-/* Cuerpo */
-.card-body {
-  padding: 0 20px 16px;
-  flex-grow: 1; /* Permite que el footer siempre quede abajo */
-}
-
-.titulo {
-  font-size: 1.15rem;
-  color: #0f172a;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
-.info-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 16px;
-  font-size: 0.9rem;
-  color: #475569;
-}
-
-/* Truncar observaciones largas */
-.observaciones {
-  background-color: #f8fafc;
-  padding: 12px;
+  justify-content: center;
   border-radius: 8px;
-  border-left: 3px solid #cbd5e1;
 }
 
-.observaciones p {
-  color: #334155;
-  font-size: 0.85rem;
-  margin: 0;
-  /* TRUCO: Cortar el texto si es muy largo (ej: el que transcribimos) a solo 3 líneas */
+.card-avatar mat-icon {
+  color: #1a56db;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.card-prioridad-alta {
+  border-left: 4px solid #ef4444 !important;
+}
+
+.obs-text {
+  color: #475569;
+  font-size: 0.875rem;
+  line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  background: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border-left: 3px solid #e2e8f0;
   font-style: italic;
+  margin-top: 4px;
 }
 
-/* Pie de tarjeta (Botones) */
-.card-footer {
-  padding: 16px 20px;
-  border-top: 1px solid #f1f5f9;
+.card-foot {
+  padding: 10px 16px 14px;
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  background-color: #f8fafc;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-button {
-  cursor: pointer;
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.2s;
+.badge.estado-pendiente {
+  background-color: #fef3c7;
+  color: #92400e;
 }
 
-.btn-secundario {
-  background-color: transparent;
-  border: 1px solid #cbd5e1;
-  color: #475569;
-}
-
-.btn-secundario:hover {
-  background-color: #e2e8f0;
-}
-
-.btn-primario {
-  background-color: #2563eb; /* Azul primary */
-  border: none;
-  color: white;
-}
-
-.btn-primario:hover {
-  background-color: #1d4ed8;
-}
-
-/* Estado cuando no hay pendientes */
-.estado-vacio {
-  grid-column: 1 / -1; /* Ocupa todo el ancho */
-  text-align: center;
-  padding: 40px;
-  background-color: #f8fafc;
-  border-radius: 12px;
+.vence-txt {
+  margin-left: auto;
+  font-size: 0.75rem;
   color: #64748b;
-  font-size: 1.1rem;
+}
+
+.vence-urgente {
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════════════════
+   DARK MODE
+   ══════════════════════════════════════════════ */
+:host-context(html.dark-mode) .header-icon-wrap {
+  background: #3d1f0a;
+}
+
+:host-context(html.dark-mode) .header-icon-wrap mat-icon {
+  color: #fb923c;
+}
+
+:host-context(html.dark-mode) .card-avatar {
+  background: #1f3044;
+}
+
+:host-context(html.dark-mode) .card-avatar mat-icon {
+  color: #79c0ff;
+}
+
+:host-context(html.dark-mode) .obs-text {
+  background: #1c2128;
+  border-left-color: #444c56;
+  color: #8b949e;
+}
+
+:host-context(html.dark-mode) .badge.estado-pendiente {
+  background-color: #2d2008;
+  color: #fbbf24;
+}
+
+:host-context(html.dark-mode) .vence-txt {
+  color: #6e7681;
+}
+
+:host-context(html.dark-mode) .vence-urgente {
+  color: #f87171;
 }

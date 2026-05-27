@@ -1,68 +1,100 @@
-/* Espaciado general del componente */
-.reportes-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
-/*
-   Configuración de la cuadrícula de tarjetas
-   Usamos 'flex' para que las tarjetas se acomoden solas según el tamaño de la pantalla
-*/
-.dashboard-cards {
+.page-header-block {
   display: flex;
-  flex-wrap: wrap; /* Si no caben, saltan a la siguiente línea */
-  gap: 20px;       /* Espacio entre cada tarjeta */
-  margin-top: 20px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
 }
 
-/* Diseño base de una tarjeta (todas comparten esto) */
-.card {
-  flex: 1;           /* Todas intentan tener el mismo ancho */
-  min-width: 200px;  /* Pero ninguna puede ser más pequeña que 200px */
-  padding: 20px;
-  border-radius: 10px;
-  color: white;      /* Texto en blanco para resaltar sobre el fondo de color */
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombrita para dar profundidad */
-  transition: transform 0.2s; /* Animación suave para cuando pasas el mouse */
+.header-icon-wrap {
+  background: #eff6ff;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Efecto visual al pasar el mouse por encima de una tarjeta */
-.card:hover {
-  transform: translateY(-5px); /* Se levanta un poco */
+.header-icon-wrap mat-icon {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+  color: #1a56db;
 }
 
-/* Estilo para los títulos (Pendiente, Proceso, etc) */
-.card h3 {
+/* ── Stats grid ──────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  color: white;
+  border: none !important;
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18) !important;
+}
+
+.stat-card mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 20px !important;
+  gap: 4px;
+}
+
+.stat-icon-wrap {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.stat-icon-wrap mat-icon {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+  color: white;
+}
+
+.stat-count {
+  font-size: 3rem;
+  font-weight: 800;
   margin: 0;
-  font-size: 1.2rem;
-  opacity: 0.9;
+  line-height: 1;
 }
 
-/* Estilo para el número grande del total */
-.count {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin: 10px 0 0 0;
+.stat-label {
+  font-size: 0.9rem;
+  margin: 4px 0 0;
+  opacity: 0.88;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
-/*
-   ASIGNACIÓN DE COLORES INTUITIVOS
-   Usamos clases específicas para cambiar solo el color de fondo de cada una
-*/
+.card-pendiente  { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+.card-proceso    { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+.card-finalizado { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); }
+.card-total      { background: linear-gradient(135deg, #475569 0%, #334155 100%); }
 
-.card-pendiente {
-  background-color: #f39c12; /* Naranja = Espera / Alerta */
+/* ══════════════════════════════════════════════
+   DARK MODE
+   ══════════════════════════════════════════════ */
+:host-context(html.dark-mode) .header-icon-wrap {
+  background: #1f3044;
 }
 
-.card-proceso {
-  background-color: #3498db; /* Azul = Actividad / Ejecución */
-}
-
-.card-finalizado {
-  background-color: #2ecc71; /* Verde = Éxito / Terminado */
-}
-
-.card-total {
-  background-color: #34495e; /* Gris oscuro = Informativo / Neutral */
+:host-context(html.dark-mode) .header-icon-wrap mat-icon {
+  color: #79c0ff;
 }

@@ -1,89 +1,112 @@
-<div class="contenedor">
-  <header class="header">
-    <h1>Editar Expediente</h1>
-  </header>
+<div class="page-container">
 
-  <section class="seccion-formulario">
-    <h2>Datos del Expediente #{{ expediente.id }}</h2>
+  <div class="back-row">
+    <button mat-stroked-button routerLink="/bandeja">
+      <mat-icon>arrow_back</mat-icon> Volver a la bandeja
+    </button>
+  </div>
 
-    @if (mensajeError) {
-      <div class="mensaje-error">
-        {{ mensajeError }}
+  <mat-card class="form-card">
+    <mat-card-header>
+      <div mat-card-avatar class="edit-avatar">
+        <mat-icon>edit_note</mat-icon>
       </div>
-    }
+      <mat-card-title>Editar Expediente</mat-card-title>
+      <mat-card-subtitle>
+        @if (expediente.id !== 0) {
+          Modificando expediente #{{ expediente.id }}
+        } @else {
+          Expediente no encontrado
+        }
+      </mat-card-subtitle>
+    </mat-card-header>
 
-    @if (expediente.id !== 0) {
-      <div class="formulario">
-        <!-- Campo: Número -->
-        <div class="campo">
-          <label>Número</label>
-          <input type="text"
-            placeholder="Ej: EXP-123"
-            [(ngModel)]="expediente.numero"
-            [class.input-error]="!expediente.numero && mensajeError">
+    <mat-card-content>
+      @if (mensajeError) {
+        <div class="form-error">
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ mensajeError }}</span>
+        </div>
+      }
+
+      @if (expediente.id !== 0) {
+        <div class="form-section">
+          <p class="form-section-label">Información básica</p>
+          <div class="form-grid">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Número</mat-label>
+              <input matInput placeholder="Ej: EXP-123" [(ngModel)]="expediente.numero">
+              <mat-icon matSuffix>tag</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Estado</mat-label>
+              <mat-select [(ngModel)]="expediente.estado">
+                <mat-option value="">Seleccionar estado</mat-option>
+                <mat-option value="En Proceso">En Proceso</mat-option>
+                <mat-option value="Finalizado">Finalizado</mat-option>
+                <mat-option value="Pendiente">Pendiente</mat-option>
+                <mat-option value="Cancelado">Cancelado</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Prioridad</mat-label>
+              <mat-select [(ngModel)]="expediente.prioridad">
+                <mat-option value="">Seleccionar prioridad</mat-option>
+                <mat-option value="Alta">Alta</mat-option>
+                <mat-option value="Media">Media</mat-option>
+                <mat-option value="Baja">Baja</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
         </div>
 
-        <!-- Campo: Estado -->
-        <div class="campo">
-          <label>Estado</label>
-          <select [(ngModel)]="expediente.estado" [class.input-error]="!expediente.estado && mensajeError">
-            <option value="">Seleccionar estado</option>
-            <option value="En Proceso">En Proceso</option>
-            <option value="Finalizado">Finalizado</option>
-            <option value="Pendiente">Pendiente</option>
-            <option value="Cancelado">Cancelado</option>
-          </select>
+        <div class="form-section">
+          <p class="form-section-label">Fechas</p>
+          <div class="form-grid">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Creación</mat-label>
+              <input matInput type="date" [(ngModel)]="expediente.fechaCreacion">
+              <mat-icon matSuffix>calendar_today</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Vencimiento</mat-label>
+              <input matInput type="date" [(ngModel)]="expediente.fechaVencimiento">
+              <mat-icon matSuffix>event_busy</mat-icon>
+            </mat-form-field>
+
+          </div>
         </div>
 
-        <!-- Campo: Prioridad -->
-        <div class="campo">
-          <label>Prioridad</label>
-          <select [(ngModel)]="expediente.prioridad" [class.input-error]="!expediente.prioridad && mensajeError">
-            <option value="">Seleccionar prioridad</option>
-            <option value="Alta">Alta</option>
-            <option value="Media">Media</option>
-            <option value="Baja">Baja</option>
-          </select>
+        <div class="form-section">
+          <p class="form-section-label">Notas</p>
+          <mat-form-field appearance="outline" class="field-full">
+            <mat-label>Observaciones</mat-label>
+            <textarea matInput rows="5"
+              [(ngModel)]="expediente.observaciones"
+              placeholder="Ingrese observaciones...">
+            </textarea>
+          </mat-form-field>
         </div>
 
-        <!-- Campo: Fecha Creación -->
-        <div class="campo">
-          <label>Fecha de Creación</label>
-          <input type="date"
-            [(ngModel)]="expediente.fechaCreacion"
-            [class.input-error]="!expediente.fechaCreacion && mensajeError">
-        </div>
+      }
+    </mat-card-content>
 
-        <!-- Campo: Fecha Vencimiento -->
-        <div class="campo">
-          <label>Fecha de Vencimiento</label>
-          <input type="date"
-            [(ngModel)]="expediente.fechaVencimiento"
-            [class.input-error]="!expediente.fechaVencimiento && mensajeError">
-        </div>
+    <mat-card-actions align="end">
+      <button mat-stroked-button routerLink="/bandeja">
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+      @if (expediente.id !== 0) {
+        <button mat-raised-button color="primary" (click)="guardarCambios()">
+          <mat-icon>save</mat-icon> Guardar Cambios
+        </button>
+      }
+    </mat-card-actions>
+  </mat-card>
 
-        <div class="form-grupo">
-          <label for="obs">Observaciones:</label>
-          <textarea
-            id="obs"
-            rows="4"
-            [(ngModel)]="expediente.observaciones"
-            name="observaciones"
-            placeholder="Escribe las observaciones aquí..."
-            required>
-          </textarea>
-        </div>
-
-        <!-- Acciones -->
-        <div class="acciones-form">
-          <button class="btn-primario" (click)="guardarCambios()">Guardar Cambios</button>
-          <button class="btn-secundario" routerLink="/bandeja">Cancelar</button>
-        </div>
-      </div>
-    } @else {
-      <div class="acciones-form">
-        <button class="btn-secundario" routerLink="/bandeja">Volver a la Bandeja</button>
-      </div>
-    }
-  </section>
 </div>

@@ -1,0 +1,94 @@
+<div class="kanban-container">
+
+  <!-- Page header -->
+  <div class="page-header-block">
+    <div class="header-icon-wrap">
+      <mat-icon>view_kanban</mat-icon>
+    </div>
+    <div>
+      <h1 class="page-title">Vista Kanban</h1>
+      <p class="page-subtitle-inline">{{ totalExpedientes() }} expedientes en total</p>
+    </div>
+  </div>
+
+  <!-- Kanban board -->
+  <div class="kanban-board">
+
+    @for (columna of columnas(); track columna.estado) {
+      <div class="kanban-col" [class]="columna.colorClass">
+
+        <!-- Column header -->
+        <div class="col-header">
+          <div class="col-header-left">
+            <mat-icon class="col-icon">{{ columna.icon }}</mat-icon>
+            <span class="col-title">{{ columna.label }}</span>
+          </div>
+          <span class="col-count">{{ columna.expedientes.length }}</span>
+        </div>
+
+        <!-- Cards -->
+        <div class="col-body">
+
+          @for (exp of columna.expedientes; track exp.id) {
+            <mat-card class="kanban-card" [class]="'card-prioridad-' + prioridadClass(exp.prioridad)">
+              <mat-card-content>
+
+                <!-- Card top row: número + prioridad badge -->
+                <div class="card-top">
+                  <span class="card-numero">{{ exp.numero }}</span>
+                  <span class="badge small" [class]="prioridadClass(exp.prioridad)">
+                    {{ exp.prioridad }}
+                  </span>
+                </div>
+
+                <!-- Dates -->
+                <div class="card-dates">
+                  <span class="card-date-item">
+                    <mat-icon class="date-icon">calendar_today</mat-icon>
+                    {{ exp.fechaCreacion | date:'dd/MM/yyyy' }}
+                  </span>
+                  <span class="card-date-item">
+                    <mat-icon class="date-icon">event_busy</mat-icon>
+                    {{ exp.fechaVencimiento | date:'dd/MM/yyyy' }}
+                  </span>
+                </div>
+
+                <!-- Observations -->
+                @if (exp.observaciones) {
+                  <p class="card-obs">{{ exp.observaciones }}</p>
+                }
+
+              </mat-card-content>
+
+              <mat-divider></mat-divider>
+
+              <!-- Move buttons -->
+              <mat-card-actions class="card-actions">
+                <span class="move-label">Mover a:</span>
+                @for (destino of estadosDestino(columna.estado); track destino.estado) {
+                  <button mat-button
+                    class="move-btn"
+                    [matTooltip]="'Mover a ' + destino.label"
+                    (click)="mover(exp, destino.estado)">
+                    <mat-icon>{{ destino.icon }}</mat-icon>
+                    {{ destino.label }}
+                  </button>
+                }
+              </mat-card-actions>
+
+            </mat-card>
+          }
+
+          @if (columna.expedientes.length === 0) {
+            <div class="col-empty">
+              <mat-icon>inbox</mat-icon>
+              <p>Sin expedientes</p>
+            </div>
+          }
+
+        </div>
+      </div>
+    }
+
+  </div>
+</div>
