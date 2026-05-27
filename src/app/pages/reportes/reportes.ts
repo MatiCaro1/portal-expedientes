@@ -3,6 +3,7 @@ import { ExpedienteService } from '../../service/expediente';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
+
 @Component({
   selector: 'app-reportes',
   imports: [MatCardModule, MatIconModule],

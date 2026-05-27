@@ -114,3 +114,12 @@ Este historial debe mostrarse en la vista de detalle del expediente. La informac
 Implemente una nueva funcionalidad llamada “Calendario de vencimientos” para el Portal de Expedientes. Cada expediente deberá incorporar una fecha de vencimiento y el sistema deberá mostrar visualmente cuáles expedientes están próximos a vencer o ya vencieron. Para ello, agregue el nuevo campo en creación y edición de expedientes, muestre la información en la Bandeja y aplique estilos dinámicos según el estado temporal del vencimiento.
  
 Además, cree una nueva vista llamada “Próximos a vencer”, accesible desde el menú lateral mediante Angular Router, donde se muestren únicamente los expedientes cuya fecha de vencimiento esté dentro de los próximos 7 días. La solución debe utilizar ExpedienteService, directivas estructurales (@if, @for) y pipes para el formateo de fechas.
+
+
+# Actividad - 26-05-2026
+
+Desarrolle una nueva vista llamada Kanban para el Portal de Expedientes, accesible desde el menú lateral mediante Angular Router. Esta vista deberá presentar los expedientes en un formato visual organizado por columnas según su estado, reemplazando la visualización tradicional basada en tablas. Las columnas requeridas serán: Pendiente, En proceso y Finalizado.
+ 
+Cada expediente deberá mostrarse dentro de una tarjeta utilizando Angular Material (mat-card) e incluir como mínimo: nombre del expediente, prioridad, fecha de creación y observaciones. La información deberá obtenerse exclusivamente mediante ExpedienteService, evitando acceder directamente a localStorage, y se deberán utilizar directivas para generar dinámicamente las columnas y el contenido.
+ 
+Como mejora visual, destaque automáticamente la prioridad del expediente mediante estilos dinámicos y aplique pipes para el formato de fechas. Como desafío opcional, incorpore botones que permitan cambiar el estado del expediente directamente desde la tarjeta para moverlo entre columnas sin volver a la Bandeja de Trabajo.
